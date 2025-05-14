@@ -1,0 +1,176 @@
+﻿@model ShowTableViewModel
+
+@{
+    ViewData["Title"] = "Email History";
+}
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mt-1 mb-2">
+                        <button id="deleteButton" class="btn btn-danger" style="display:none;">Delete Selected</button>
+                        @Html.Partial("_SendPartialView", Model)
+                    </div>
+                    <table id="emailHistoryTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="m-1"><input type="checkbox" class="memberCheckbox form-check-input" id="checkAll"> All</th>
+                                <th>Display Name</th>
+                                <th>RecipientEmail</th>
+                                <th>Subject</th>
+                                <th>SentDate</th>
+                                <th>UserEmail</th>
+                                <th>Message</th>
+                                <th>Status</th>
+                                <th>IsWhasAppSent</th>
+                                <th>IsConnectionSent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Message Body</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="$('#dynamicModal').modal('hide');" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content from AJAX will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#dynamicModal').modal('hide');">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function () {
+        var table = $j('#emailHistoryTable').DataTable({
+            processing: true,
+            scrollX: true,
+            ajax: {
+                url: '@Url.Action("GetEmailHistoryData", "Email")',
+                type: 'GET',
+                data: function (d) {
+
+                }
+            },
+            columns: [
+                { data: 'userId', render: function (data, type, row) { return '<input type="checkbox" class="memberCheckbox form-check-input" value="' + row.userId + '">'; } },
+                { data: 'displayName' },
+                { data: 'recipientEmail' },
+                { data: 'subject' },
+                {
+                    data: 'sentDate',
+                    render: function (data) {
+                        const date = new Date(data);
+                        const formattedDate = date.toLocaleDateString('en-US');
+                        const fullDate = date.toLocaleString();
+
+                        return `<span title="${fullDate}">${formattedDate}</span>`;
+                    }
+                },
+                { data: 'userEmail' },
+                {
+                    data: 'message',
+                    render: function (data, type, row) {
+                        return `<button class="btn btn-info btn-sm" onclick="loadDetails(${row.id})">View</button>`; // Pass the correct id here
+                    }
+                },
+                { data: 'isSuccess', render: function (data) { return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>"; } },
+                {
+                    data: 'isWhasAppSent', render: function (data) {
+                        return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>";
+                    }
+                },
+                {
+                    data: 'isConnectionSent', render: function (data) {
+                        return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>";
+                    }
+                }
+
+            ],
+            order: [[4, 'desc']],
+            pageLength: 10,
+            stateSave: true
+        });
+
+        $j(document).on('change', '#checkAll', function () {
+            var isChecked = $j(this).prop('checked');
+            $j('.memberCheckbox').prop('checked', isChecked);
+            toggleDeleteButton();
+        });
+
+        $j(document).on('change', '.memberCheckbox', function () {
+            toggleDeleteButton();
+        });
+
+        function toggleDeleteButton() {
+            var selectedCount = $j('.memberCheckbox:checked').length;
+            if (selectedCount > 0) {
+                $j('#deleteButton').show();
+            } else {
+                $j('#deleteButton').hide();
+            }
+        }
+
+        $j('#deleteButton').on('click', function () {
+            var selectedIds = [];
+            $('.memberCheckbox:checked').each(function () {
+                selectedIds.push($j(this).val());
+            });
+
+            if (selectedIds.length > 0) {
+                if (confirm("Are you sure you want to delete the selected records?")) {
+                    $j.ajax({
+                        url: '@Url.Action("DeleteSelectedEmails", "Email")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ ids: selectedIds }),
+                        success: function (response) {
+                            toast.success(response.message);
+                            table.ajax.reload();
+                        },
+                        error: function (error) {
+                            toast.error("Error while deleting records");
+                        }
+                    });
+                }
+            }
+        })
+    });
+
+    function loadDetails(id) {
+        $.ajax({
+            url: `/Email/GetEmailById/${id}`,
+            method: 'GET',
+            success: function (response) {
+                let messageContent = response.data;
+                let htmlContent = `<div class="form-group">`;
+                htmlContent += `<p>${messageContent.replace(/\n/g, "<br/>")}</p>`;
+                htmlContent += `</div>`;
+                $('#modalBody').html(htmlContent);
+                $('#dynamicModal').modal('show');
+            },
+            error: function (error) {
+                console.error("Error fetching details:", error);
+                alert("Unable to load message details.");
+            }
+        });
+    }
+</script>
+

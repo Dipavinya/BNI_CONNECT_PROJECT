@@ -1,0 +1,50 @@
+2025-05-10 15:58:24.782 +05:30 [INF] Test log message for "2025-05-10T10:28:24.7816461Z"
+2025-05-10 15:58:24.782 +05:30 [INF] Test log message for "2025-05-10T10:28:24.7816461Z"
+2025-05-10 16:02:37.068 +05:30 [INF] Test log message for "2025-05-10T10:32:37.0678894Z"
+2025-05-10 16:02:37.068 +05:30 [INF] Test log message for "2025-05-10T10:32:37.0678894Z"
+2025-05-10 16:51:49.525 +05:30 [INF] Test log message for "2025-05-10T11:21:49.5246690Z"
+2025-05-10 16:51:49.525 +05:30 [INF] Test log message for "2025-05-10T11:21:49.5246690Z"
+2025-05-10 16:54:32.970 +05:30 [INF] Test log message for "2025-05-10T11:24:32.9692172Z"
+2025-05-10 16:54:32.970 +05:30 [INF] Test log message for "2025-05-10T11:24:32.9692172Z"
+2025-05-10 16:55:48.696 +05:30 [INF] Test log message for "2025-05-10T11:25:48.6956863Z"
+2025-05-10 16:55:48.696 +05:30 [INF] Test log message for "2025-05-10T11:25:48.6956863Z"
+2025-05-10 16:56:30.693 +05:30 [INF] Test log message for "2025-05-10T11:26:30.6922428Z"
+2025-05-10 16:56:30.693 +05:30 [INF] Test log message for "2025-05-10T11:26:30.6922428Z"
+2025-05-10 17:00:52.001 +05:30 [INF] Test log message for "2025-05-10T11:30:52.0002961Z"
+2025-05-10 17:00:52.001 +05:30 [INF] Test log message for "2025-05-10T11:30:52.0002961Z"
+2025-05-10 17:40:01.050 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+2025-05-10 17:40:01.050 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+2025-05-10 17:42:06.401 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+2025-05-10 17:42:06.401 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+2025-05-10 17:42:25.531 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+2025-05-10 17:42:25.531 +05:30 [ERR] Error while getting Search data
+System.FormatException: The format of value '' is invalid.
+   at System.Net.Http.Headers.HttpHeaderParser.ParseValue(String value, Object storeValue, Int32& index)
+   at System.Net.Http.Headers.HttpHeaders.ParseAndAddValue(HeaderDescriptor descriptor, HeaderStoreItemInfo info, String value)
+   at System.Net.Http.Headers.HttpHeaders.Add(HeaderDescriptor descriptor, String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<FileViewModel>
+@{
+    ViewData["Title"] = "Upload Documents";
+}
+
+<div class="container-fluid mt-2">
+    <div class="row">
+         <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+        <form asp-action="UploadFile" method="post" enctype="multipart/form-data" id="uploadForm">
+            <div class="row">
+                    <div class="col-10">
+                    <label for="formFileSm" class="form-label">Upload Document</label>
+                    <input class="form-control form-control-sm" name="file" id="formFileSm" type="file" />
+                </div>
+                <div class="col-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                  </div>
+            </div>
+            <div id="error-message" style="color: red; display:none;">
+                Please select a file before uploading..
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>File Url</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var files in Model)
+                                {
+                                    <tr>
+                                        <td>@files.FileName</td>
+                                        <td>@files.FileUrl</td>
+                                        <td><button class="btn btn-primary" onclick="ViewFile('@files.FileName')">View</button> <button class="btn btn-danger" onclick="deleteFile('@files.FileName')">Delete</button></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center">No records found.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function deleteFile(fileName) {
+        if (confirm('Are you sure you want to delete this file?')) {
+            $.ajax({
+                url: '@Url.Action("DeleteFile", "File")', 
+                type: 'POST',
+                data: { fileName: fileName },
+                success: function(response) {
+                    toastr.success(`File deleted successfully!`);
+                    location.reload(); 
+
+                },
+                error: function(xhr, status, error) {
+                    toastr.error(`Error deleting file`);
+                }
+            });
+        }
+    }
+
+    function ViewFile(fileName) {
+        window.open('/File/ViewFile?fileName=' + encodeURIComponent(fileName), '_blank');
+    }
+
+    document.getElementById('uploadForm').addEventListener('submit', function (event) {
+        var fileInput = document.getElementById('formFileSm');
+
+        if (fileInput.files.length === 0) {
+            event.preventDefault();
+            document.getElementById('error-message').style.display = 'block';
+        }
+        else {
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+    })
+</script>

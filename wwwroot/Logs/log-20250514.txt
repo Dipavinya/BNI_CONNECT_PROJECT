@@ -1,0 +1,174 @@
+2025-05-14 13:04:32.516 +05:30 [INF] Test log message for "2025-05-14T07:34:32.5143211Z"
+2025-05-14 13:04:32.516 +05:30 [INF] Test log message for "2025-05-14T07:34:32.5143211Z"
+2025-05-14 14:57:29.504 +05:30 [INF] Test log message for "2025-05-14T09:27:29.5030308Z"
+2025-05-14 14:57:29.504 +05:30 [INF] Test log message for "2025-05-14T09:27:29.5030308Z"
+2025-05-14 15:29:14.297 +05:30 [INF] Test log message for "2025-05-14T09:59:14.2962487Z"
+2025-05-14 15:29:14.297 +05:30 [INF] Test log message for "2025-05-14T09:59:14.2962487Z"
+2025-05-14 15:30:41.729 +05:30 [INF] Test log message for "2025-05-14T10:00:41.7287086Z"
+2025-05-14 15:30:41.729 +05:30 [INF] Test log message for "2025-05-14T10:00:41.7287086Z"
+2025-05-14 15:39:11.164 +05:30 [INF] Test log message for "2025-05-14T10:09:11.1635131Z"
+2025-05-14 15:39:11.164 +05:30 [INF] Test log message for "2025-05-14T10:09:11.1635131Z"
+2025-05-14 15:45:34.494 +05:30 [ERR] Error while getting Search data
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+ClientConnectionId:c7e447ca-4271-4c81-a3b5-f441b3b99931
+Error Number:10743,State:1,Class:15
+2025-05-14 15:45:34.494 +05:30 [ERR] Error while getting Search data
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model)
+ClientConnectionId:c7e447ca-4271-4c81-a3b5-f441b3b99931
+Error Number:10743,State:1,Class:15
+2025-05-14 16:14:03.509 +05:30 [INF] Test log message for "2025-05-14T10:44:03.5084748Z"
+2025-05-14 16:14:03.509 +05:30 [INF] Test log message for "2025-05-14T10:44:03.5084748Z"
+2025-05-14 16:44:52.212 +05:30 [INF] Test log message for "2025-05-14T11:14:52.2114726Z"
+2025-05-14 16:44:52.212 +05:30 [INF] Test log message for "2025-05-14T11:14:52.2114726Z"
+2025-05-14 16:47:28.192 +05:30 [INF] Test log message for "2025-05-14T11:17:28.1916668Z"
+2025-05-14 16:47:28.192 +05:30 [INF] Test log message for "2025-05-14T11:17:28.1916668Z"
+2025-05-14 16:49:08.696 +05:30 [INF] Test log message for "2025-05-14T11:19:08.6955139Z"
+2025-05-14 16:49:08.696 +05:30 [INF] Test log message for "2025-05-14T11:19:08.6955139Z"
+2025-05-14 16:49:21.031 +05:30 [INF] Test log message for "2025-05-14T11:19:21.0308460Z"
+2025-05-14 16:49:21.031 +05:30 [INF] Test log message for "2025-05-14T11:19:21.0308460Z"
+2025-05-14 16:50:58.810 +05:30 [INF] Test log message for "2025-05-14T11:20:58.8096619Z"
+2025-05-14 16:50:58.810 +05:30 [INF] Test log message for "2025-05-14T11:20:58.8096619Z"
+2025-05-14 17:13:25.659 +05:30 [INF] Test log message for "2025-05-14T11:43:25.6584595Z"
+2025-05-14 17:13:25.659 +05:30 [INF] Test log message for "2025-05-14T11:43:25.6584595Z"
+2025-05-14 17:14:54.654 +05:30 [ERR] Error while getting Search data from DB
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+2025-05-14 17:14:54.676 +05:30 [ERR] Error while getting Search data from DB
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+2025-05-14 17:14:54.654 +05:30 [ERR] Error while getting Search data from DB
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+2025-05-14 17:14:54.676 +05:30 [ERR] Error while getting Search data from DB
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+2025-05-14 17:15:16.858 +05:30 [INF] Test log message for "2025-05-14T11:45:16.8576421Z"
+2025-05-14 17:15:16.858 +05:30 [INF] Test log message for "2025-05-14T11:45:16.8576421Z"
+2025-05-14 17:40:47.288 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:df2dcf74-c870-479f-b19b-5fae2dfae4b9
+Error Number:10743,State:1,Class:15
+2025-05-14 17:40:47.288 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:df2dcf74-c870-479f-b19b-5fae2dfae4b9
+Error Number:10743,State:1,Class:15
+2025-05-14 17:54:55.245 +05:30 [INF] Test log message for "2025-05-14T12:24:55.2427146Z"
+2025-05-14 17:54:55.245 +05:30 [INF] Test log message for "2025-05-14T12:24:55.2427146Z"
+2025-05-14 17:56:08.637 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:2b6d9476-9ef3-4ce9-a255-e8f996b9ff0f
+Error Number:10743,State:1,Class:15
+2025-05-14 17:56:08.637 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:2b6d9476-9ef3-4ce9-a255-e8f996b9ff0f
+Error Number:10743,State:1,Class:15
+2025-05-14 17:57:28.146 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:2b6d9476-9ef3-4ce9-a255-e8f996b9ff0f
+Error Number:10743,State:1,Class:15
+2025-05-14 17:57:28.146 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): The number of rows provided for a OFFSET clause must be an integer.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\Dip\BNIConnect\BNIConnect\Controllers\MembersController.cs:line 97
+ClientConnectionId:2b6d9476-9ef3-4ce9-a255-e8f996b9ff0f
+Error Number:10743,State:1,Class:15
+2025-05-14 17:58:14.000 +05:30 [INF] Test log message for "2025-05-14T12:28:13.9999323Z"
+2025-05-14 17:58:14.000 +05:30 [INF] Test log message for "2025-05-14T12:28:13.9999323Z"

@@ -1,0 +1,163 @@
+﻿@model ShowTableViewModel
+
+@{
+    ViewData["Title"] = "Connection History";
+}
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="mt-1 mb-2">
+                        <button id="deleteButton" class="btn btn-danger" style="display:none;">Delete Selected</button>
+                        @Html.Partial("_SendPartialView",Model)
+                    </div>
+
+                    <table id="ConnectionHistory" class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th class="m-1"><input type="checkbox" class="memberCheckbox form-check-input" id="checkAll"> All</th>
+                                <th>Display Name</th>
+                                <th>PhoneNumber</th>
+                                <th>Email</th>
+                                <th>Business Category</th>
+                                <th>SentDate</th>
+                                <th>Status</th>
+                                <th>IsMailSent</th>
+                                <th>IsWhatsAppSent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var $j = jQuery.noConflict();
+
+    $j(document).ready(function () {
+        var checkedIds = {};
+
+        var table = $j('#ConnectionHistory').DataTable({
+            processing: true,
+            scrollX: true,
+            ajax: {
+                url: '@Url.Action("GetConnectionHistoryData", "Members")',
+                type: 'GET',
+                data: function (d) { }
+            },
+            columns: [
+                {
+                    data: 'userId', render: function (data, type, row) {
+                        return '<input type="checkbox" class="memberCheckbox form-check-input" value="' + row.userId + '" ' + (checkedIds[row.userId] ? 'checked' : '') + '>';
+                    }
+                },
+                { data: 'displayName' },
+                { data: 'phoneNumber' },
+                { data: 'email' },
+                { data: 'industry' },
+                {
+                    data: 'sentDate',
+                    render: function (data) {
+                        const date = new Date(data);
+                        const formattedDate = date.toLocaleDateString('en-US');
+                        const fullDate = date.toLocaleString();
+                        return `<span title="${fullDate}">${formattedDate}</span>`;
+                    }
+                },
+                {
+                    data: 'isSuccess', render: function (data) {
+                        return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>";
+                    }
+                },
+                {
+                    data: 'isMailSent', render: function (data) {
+                        return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>";
+                    }
+                },
+                {
+                    data: 'isWhasAppSent', render: function (data) {
+                        return data ? "<i class='ri-checkbox-circle-fill fs-22'></i>" : "<i class='ri-close-circle-fill fs-22'></i>";
+                    }
+                }
+            ],
+            order: [[4, 'desc']],
+            pageLength: 10,
+            stateSave: true,
+            drawCallback: function () {
+                $j('.memberCheckbox').each(function () {
+                    var checkboxValue = $j(this).val();
+                    $j(this).prop('checked', !!checkedIds[checkboxValue]);
+                });
+
+            }
+        });
+
+        $j(document).on('change', '#checkAll', function () {
+            var isChecked = $j(this).prop('checked');
+
+            console.log("Current Page Index: ", table.page());
+
+            var rows = table.rows({ page: 'current' }).nodes();
+          
+            $j(rows).find('.memberCheckbox').prop('checked', isChecked);
+
+            $j(rows).find('.memberCheckbox').each(function () {
+                checkedIds[$j(this).val()] = isChecked;
+            });
+
+            toggleDeleteButton();
+            console.log("Current Page Index: ", table.page());
+        });
+
+        $j(document).on('change', '.memberCheckbox', function () {
+            var checkboxValue = $j(this).val();
+            checkedIds[checkboxValue] = $j(this).prop('checked'); 
+            toggleDeleteButton();
+        });
+
+        function toggleDeleteButton() {
+            var selectedCount = $j('.memberCheckbox:checked').length;
+            console.log(selectedCount);
+            if (selectedCount > 0) {
+                $j('#deleteButton').show();
+            } else {
+                $j('#deleteButton').hide();
+            }
+        }
+
+        $j('#deleteButton').on('click', function () {
+            var selectedIds = [];
+            $j('.memberCheckbox:checked').each(function () {
+                selectedIds.push($j(this).val());
+            });
+
+            if (selectedIds.length > 0) {
+                if (confirm("Are you sure you want to delete the selected records?")) {
+                    $j.ajax({
+                        url: '@Url.Action("DeleteSelectedConnections", "Members")',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ ids: selectedIds }),
+                        success: function (response) {
+                            selectedIds.forEach(function (id) {
+                                delete checkedIds[id];
+                            });
+                            table.ajax.reload(null, false); 
+                            $j('#deleteButton').hide();
+                        },
+                        error: function (error) {
+                            alert("An error occurred while deleting records.");
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
