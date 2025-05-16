@@ -29,15 +29,15 @@ namespace BniConnect.Repository
         FROM members_profiles
         WHERE 
             (@MemberKeywords IS NULL OR 
-                (display_name LIKE '%' + @MemberKeywords + '%' OR 
+                (Name LIKE '%' + @MemberKeywords + '%' OR 
                  company LIKE '%' + @MemberKeywords + '%'))
-            AND (@MemberFirstName IS NULL OR display_name LIKE '%' + @MemberFirstName + '%')
-            AND (@MemberLastName IS NULL OR display_name LIKE '%' + @MemberLastName + '%')
+            AND (@MemberFirstName IS NULL OR Name LIKE '%' + @MemberFirstName + '%')
+            AND (@MemberLastName IS NULL OR Name LIKE '%' + @MemberLastName + '%')
             AND (@MemberCompanyName IS NULL OR company LIKE '%' + @MemberCompanyName + '%')
-            AND (@MemberCountryId IS NULL OR country = @MemberCountryId)
+            AND (@MemberCountryId IS NULL OR Country = @MemberCountryId)
             AND (@MemberCity IS NULL OR city LIKE '%' + @MemberCity + '%')
-            AND (@MemberPrimaryCategory IS NULL OR member_category = @MemberPrimaryCategory)
-            AND (@MemberSecondaryCategory IS NULL OR member_subcategory = @MemberSecondaryCategory)
+            AND (@MemberPrimaryCategory IS NULL OR Category = @MemberPrimaryCategory)
+            AND(@MemberSecondaryCategory IS NULL OR member_subcategory = @MemberSecondaryCategory)
         ORDER BY date_created DESC;
     ";
         //OFFSET @Offset ROWS FETCH NEXT @PerPage ROWS ONLY;

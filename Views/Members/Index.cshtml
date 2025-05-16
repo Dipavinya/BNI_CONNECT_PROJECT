@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Search Members";
 }
+
 <div class="container-fluid mt-2">
     <div class="row">
         <div class="col-12">
@@ -37,15 +38,15 @@
                                         @foreach (var country in Model.CountryMst)
                                         {
 
-                                            bool isSelected = Model.SearchParams.MemberCountryId == country.Code;
+                                            bool isSelected = Model.SearchParams.MemberCountryId == country.Country;
 
                                             if (isSelected)
                                             {
-                                                <option value="@country.Code" selected>@country.Country</option>
+                                                <option value="@country.Country" selected>@country.Country</option>
                                             }
                                             else
                                             {
-                                                <option value="@country.Code">@country.Country</option>
+                                                <option value="@country.Country">@country.Country</option>
                                             }
                                         }
                                     </select>
@@ -56,10 +57,7 @@
                                     <label for="MemberCity">City</label>
                                     <input type="text" class="form-control" name="MemberCity" id="MemberCity" value="@Model.SearchParams.MemberCity" placeholder="City">
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="memberState">State</label>
-                                    <input type="text" class="form-control" name="MemberState" id="memberState" value="@Model.SearchParams.MemberState" placeholder="State">
-                                </div>
+                               
                                 <div class="form-group col-md-4">
                                     <label for="categoryDropdown">Primary Category</label>
                                     <select class="form-control" id="categoryDropdown" name="MemberPrimaryCategory" onchange="updateSubcategories()">
@@ -102,7 +100,7 @@
                         <div id="error-message" class="text-danger" style="display:none;">Please fill at least one field.</div>
                         <input type="hidden" id="currentPage" name="currentPage" value="@Model.SearchParams.CurrentPage" />
                         <button type="submit" class="btn btn-primary float-end me-2" id="clearFilterButton"><i class="ri-refresh-line"></i> Clear Filter</button>
-                        <button type="submit" class="btn btn-primary float-end me-2"><i class="ri-search-line"></i> Search</button>
+                        <button type="button" onclick="searchmembers()" class="btn btn-primary float-end me-2"><i class="ri-search-line"></i> Search</button>
                     </form>
                 </div>
             </div>
@@ -318,20 +316,23 @@
                                 <th>Member Name</th>
                                 <th>Chapter</th>
                                 <th>Company</th>
-                                <th>Location</th>
+                                <th>Country</th>
                                 <th>Category</th>
                                 <th>Social Links</th>
                                 <th>Connection Sent</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="membersTableBody">
+                            <!-- Members will be appended here -->
+                        </tbody>
+                       @*  <tbody>
                             @foreach (var member in Model.Members)
                             {
                                 <tr>
                                     <td>
-                                        <input type="checkbox" class="memberCheckbox form-check-input" data-name="@member.display_name" value="@member.UserId">
+                                        <input type="checkbox" class="memberCheckbox form-check-input" data-name="@member.Name" value="@member.UserId">
                                     </td>
-                                    <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=@member.UserId" class="link">@member.display_name</a></td>
+                                    <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=@member.UserId" class="link">@member.Name</a></td>
                                     <td>@member.Chapter</td>
                                     <td>@member.Company</td>
                                     <td>@member.Location</td>
@@ -344,7 +345,7 @@
                                     </td>
                                 </tr>
                             }
-                        </tbody>
+                        </tbody> *@
                     </table>
                     <div class="row">
                         <div class="col d-flex justify-content-end">
@@ -422,7 +423,111 @@
             }
         }
 
+        async function searchmembers()
+        {
+                           // var dropdown = document.getElementById("categoryDropdown");
+            //                    var dropdown = document.getElementById("subcategoryDropdown");
+            // var selectedText = dropdown.options[dropdown.selectedIndex].text;
+            // alert("Selected Text: " + selectedText);
+
+            var MemberCity= document.getElementById("MemberCity");
+            var MemberCountryId= document.getElementById("MemberCountryId").value;
+            var MemberCompanyName= document.getElementById("memberCompanyName");
+                       var MemberLastName= document.getElementById("memberLastName");
+                       var MemberFirstName= document.getElementById("memberFirstName");
+                       var MemberKeywords= document.getElementById("memberKeywords");
+
+
+                                var dropdown = document.getElementById("categoryDropdown");
+                var selectedCategoryText = dropdown.options[dropdown.selectedIndex].text;
+              //var  MemberPrimaryCategory= selectedText;
+              var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown");
+              var selectedSubCategoryText = MemberSecondaryCategory.options[MemberSecondaryCategory.selectedIndex].text;
+
+
+            const searchModel = {
+                        memberKeywords: $('#memberKeywords').val(),
+                        memberFirstName: $('#memberFirstName').val(),
+                        memberLastName: $('#memberLastName').val(),
+                        memberCompanyName: $('#MemberCompanyName').val(),
+                        memberCity: MemberCity,
+                        memberPrimaryCategory: selectedCategoryText,
+                        memberSecondaryCategory: selectedSubCategoryText,
+                        memberCountryId: MemberCountryId,
+                        currentPage:1
+                }
+                debugger;
+                   $.ajax({
+                            url: '/Members/SearchWithCookie',
+                        type: 'POST',
+                        // data: { MemberCity: MemberCity, MemberCountryId:MemberCountryId, MemberCompanyName:MemberCompanyName },
+                            contentType: 'application/json',
+                            data: JSON.stringify(searchModel),
+                            success: function(response) {
+                            debugger
+                   // // Response should include members array and totalPages count
+                   // totalPages = response.totalPages;
+                   // currentPage = page;
+
+                   // Clear table body first
+                   $('#membersTableBody').empty();
+
+                   // Append new rows
+                   response.members.forEach(member => {
+                     $('#membersTableBody').append(`
+                       <tr>
+                         <td><input type="checkbox" class="memberCheckbox" data-name="${member.name}" value="${member.userId}"></td>
+                         <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a></td>
+                         <td>${member.chapter}</td>
+                         <td>${member.company}</td>
+                         <td>${member.MemberCountryId}</td>
+                         <td>${member.category}</td>
+                         <td id="socialLinksContainer-${member.userId}">
+                           <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
+                         </td>
+                         <td><i class='ri-${member.ConnectionSent ? "checkbox" : "close"}-circle-fill fs-22'></i></td>
+                       </tr>
+                     `);
+                   });
+
+                   // Update pagination buttons
+                   // renderPagination();
+                 },
+                 error: function() {
+                   alert('Failed to fetch members.');
+                 }
+               });
+                    //     success: function (data) {
+                    //         debugger
+                    //        alert(data.Members);
+                    //            // debugger
+                    //     }
+                    // });
+
+        }
+
     </script>
+  @*   <script>
+            $("#searchForm").on("click", function() {
+               var formData = new FormData();
+               formData.append("memberCompanyName", $("#memberCompanyName").val());
+               formData.append("MemberCountryId", $("#MemberCountryId").val());
+               formData.append("MemberCity", $("#MemberCity").val());
+               formData.append("categoryDropdown", $("#categoryDropdown").val());
+               formData.append("subcategoryDropdown", $("#subcategoryDropdown").val());
+
+               $.ajax({
+                   type: 'POST',
+                   url: '@Url.Action("SearchWithCookie", "Members")',
+                   contentType: false,
+                   processData: false,
+                   cache: false,
+                   data: formData,
+                   success: successCallback,
+                   error: errorCallback
+               });
+
+    </script> *@
     <script>
         var MembersData = '@Model.Members.Count'
         const nextBtn = document.getElementById("nextPage");
