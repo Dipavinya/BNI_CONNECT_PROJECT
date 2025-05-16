@@ -85,16 +85,16 @@ namespace BniConnect.Controllers
         }
         [HttpPost]
         [Authorize]
-        public IActionResult SearchWithCookie(MemberSearchModel model)
+        public async Task<IActionResult> SearchWithCookie(MemberSearchModel model)
         {
             try
             {
-                var user = _userManager.GetUserAsync(User);
+                var user = await _userManager.GetUserAsync(User);
                 var clientId = user.Id;
 
                 // Call your DB instead of external API
                 //var members = await memberRepository.SearchMembersAsync(model);
-                var members = memberRepository.SearchMembersAsync(model);
+                List<Member> members = await memberRepository.SearchMembersAsync(model);
 
                 // Fetch other related data (optional UI-related)
                 //var defaultTemplate = await _mailSettings.GetLastUsedMailTemplateByClientId(clientId);
@@ -104,7 +104,7 @@ namespace BniConnect.Controllers
                 //var files = await GetFiles();
                 //var countrys = await _parserService.GetCountries();
                 //var category = await _categoryService.Getcategorys();
-                //var subCategories = await _categoryService.GetSubCategoryByCatId(Convert.ToInt32(model.MemberPrimaryCategory));
+                //var subCategories = await _categoryService.GetSubCategoryByCatId(Convert.ToInt32(model.MemberPrimaryCategoryId));
 
                 var totalpage = model.TotalPages + model.CurrentPage;
 
@@ -136,7 +136,7 @@ namespace BniConnect.Controllers
                 //    CategoryMst = category,
                 //    SubCategoryMst = subCategories
                 //};
-                return Json(new { members ,currentpage=model.CurrentPage,totalpage=totalpage});
+                return Json(new { members = members ,currentpage=model.CurrentPage,totalpage=totalpage});
                 //return View("Index", viewModel);
             }
             catch (Exception ex)

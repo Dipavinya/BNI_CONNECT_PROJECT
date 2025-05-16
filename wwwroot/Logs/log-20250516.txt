@@ -76,3 +76,61 @@
 2025-05-16 16:38:19.298 +05:30 [INF] Test log message for "2025-05-16T11:08:19.2969585Z"
 2025-05-16 16:42:32.434 +05:30 [INF] Test log message for "2025-05-16T11:12:32.4334619Z"
 2025-05-16 16:42:32.434 +05:30 [INF] Test log message for "2025-05-16T11:12:32.4334619Z"
+2025-05-16 17:11:34.104 +05:30 [INF] Test log message for "2025-05-16T11:41:34.1036686Z"
+2025-05-16 17:11:34.104 +05:30 [INF] Test log message for "2025-05-16T11:41:34.1036686Z"
+2025-05-16 17:14:57.261 +05:30 [INF] Test log message for "2025-05-16T11:44:57.2609051Z"
+2025-05-16 17:14:57.261 +05:30 [INF] Test log message for "2025-05-16T11:44:57.2609051Z"
+2025-05-16 17:17:25.239 +05:30 [INF] Test log message for "2025-05-16T11:47:25.2383909Z"
+2025-05-16 17:17:25.239 +05:30 [INF] Test log message for "2025-05-16T11:47:25.2383909Z"
+2025-05-16 17:18:29.466 +05:30 [INF] Test log message for "2025-05-16T11:48:29.4654235Z"
+2025-05-16 17:18:29.466 +05:30 [INF] Test log message for "2025-05-16T11:48:29.4654235Z"
+2025-05-16 17:19:41.837 +05:30 [INF] Test log message for "2025-05-16T11:49:41.8368036Z"
+2025-05-16 17:19:41.837 +05:30 [INF] Test log message for "2025-05-16T11:49:41.8368036Z"
+2025-05-16 17:22:19.296 +05:30 [INF] Test log message for "2025-05-16T11:52:19.2955445Z"
+2025-05-16 17:22:19.296 +05:30 [INF] Test log message for "2025-05-16T11:52:19.2955445Z"
+2025-05-16 17:32:31.922 +05:30 [INF] Test log message for "2025-05-16T12:02:31.9219111Z"
+2025-05-16 17:32:31.922 +05:30 [INF] Test log message for "2025-05-16T12:02:31.9219111Z"
+2025-05-16 17:34:09.788 +05:30 [INF] Test log message for "2025-05-16T12:04:09.7880921Z"
+2025-05-16 17:34:09.788 +05:30 [INF] Test log message for "2025-05-16T12:04:09.7880921Z"
+2025-05-16 17:36:09.316 +05:30 [INF] Test log message for "2025-05-16T12:06:09.3149482Z"
+2025-05-16 17:36:09.316 +05:30 [INF] Test log message for "2025-05-16T12:06:09.3149482Z"
+2025-05-16 17:37:20.751 +05:30 [INF] Test log message for "2025-05-16T12:07:20.7506621Z"
+2025-05-16 17:37:20.751 +05:30 [INF] Test log message for "2025-05-16T12:07:20.7506621Z"
+2025-05-16 17:37:37.786 +05:30 [ERR] Error while getting Search data from DB
+System.FormatException: The input string 'Advertising & Marketing' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Convert.ToInt32(String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 107
+2025-05-16 17:37:37.786 +05:30 [ERR] Error while getting Search data from DB
+System.FormatException: The input string 'Advertising & Marketing' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Convert.ToInt32(String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 107
+2025-05-16 17:37:58.305 +05:30 [ERR] Error while getting Search data from DB
+System.FormatException: The input string 'Advertising & Marketing' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Convert.ToInt32(String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 107
+2025-05-16 17:37:58.305 +05:30 [ERR] Error while getting Search data from DB
+System.FormatException: The input string 'Advertising & Marketing' was not in a correct format.
+   at System.Number.ThrowFormatException[TChar](ReadOnlySpan`1 value)
+   at System.Convert.ToInt32(String value)
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 107
+2025-05-16 17:47:47.827 +05:30 [INF] Test log message for "2025-05-16T12:17:47.8265512Z"
+2025-05-16 17:47:47.827 +05:30 [INF] Test log message for "2025-05-16T12:17:47.8265512Z"
+2025-05-16 17:49:03.498 +05:30 [INF] Test log message for "2025-05-16T12:19:03.4976025Z"
+2025-05-16 17:49:03.498 +05:30 [INF] Test log message for "2025-05-16T12:19:03.4976025Z"
+2025-05-16 17:52:46.858 +05:30 [INF] Test log message for "2025-05-16T12:22:46.8572626Z"
+2025-05-16 17:52:46.858 +05:30 [INF] Test log message for "2025-05-16T12:22:46.8572626Z"
+2025-05-16 17:57:17.670 +05:30 [INF] Test log message for "2025-05-16T12:27:17.6694945Z"
+2025-05-16 17:57:17.670 +05:30 [INF] Test log message for "2025-05-16T12:27:17.6694945Z"
+2025-05-16 18:02:56.138 +05:30 [INF] Test log message for "2025-05-16T12:32:56.1372962Z"
+2025-05-16 18:02:56.138 +05:30 [INF] Test log message for "2025-05-16T12:32:56.1372962Z"
+2025-05-16 18:51:39.317 +05:30 [INF] Test log message for "2025-05-16T13:21:39.3168866Z"
+2025-05-16 18:51:39.317 +05:30 [INF] Test log message for "2025-05-16T13:21:39.3168866Z"
+2025-05-16 18:54:23.530 +05:30 [INF] Test log message for "2025-05-16T13:24:23.5295784Z"
+2025-05-16 18:54:23.530 +05:30 [INF] Test log message for "2025-05-16T13:24:23.5295784Z"
+2025-05-16 19:00:19.534 +05:30 [INF] Test log message for "2025-05-16T13:30:19.5338569Z"
+2025-05-16 19:00:19.534 +05:30 [INF] Test log message for "2025-05-16T13:30:19.5338569Z"
+2025-05-16 19:04:42.035 +05:30 [INF] Test log message for "2025-05-16T13:34:42.0342123Z"
+2025-05-16 19:04:42.035 +05:30 [INF] Test log message for "2025-05-16T13:34:42.0342123Z"

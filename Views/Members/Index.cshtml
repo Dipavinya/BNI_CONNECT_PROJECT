@@ -89,7 +89,7 @@
 
                                             if (isSelected)
                                             {
-                                                <option value="@subCategory.SubCode" selected>@subCategory.SubCategory</option>
+                                                <option value="@subCategory.CatCode" selected>@subCategory.SubCategory</option>
                                             }
                                         }
                                     </select>
@@ -430,40 +430,50 @@
             // var selectedText = dropdown.options[dropdown.selectedIndex].text;
             // alert("Selected Text: " + selectedText);
 
-            var MemberCity= document.getElementById("MemberCity");
+            var MemberCity= document.getElementById("MemberCity").value;
             var MemberCountryId= document.getElementById("MemberCountryId").value;
-            var MemberCompanyName= document.getElementById("memberCompanyName");
-                       var MemberLastName= document.getElementById("memberLastName");
-                       var MemberFirstName= document.getElementById("memberFirstName");
-                       var MemberKeywords= document.getElementById("memberKeywords");
+            var MemberCompanyName= document.getElementById("memberCompanyName").value;
+               var MemberLastName= document.getElementById("memberLastName").value;
+               var MemberFirstName= document.getElementById("memberFirstName").value;
+               var MemberKeywords= document.getElementById("memberKeywords").value;
+                  var  MemberPrimaryCategoryId= document.getElementById("categoryDropdown").value;
+
+                        var dropdown = document.getElementById("categoryDropdown");
+
+                         var MemberPrimaryCategory=null;
+                         if(dropdown!=null && dropdown>0)
+                         {
+                                MemberPrimaryCategory = dropdown.options[dropdown.selectedIndex].text;
+                         }
 
 
-                                var dropdown = document.getElementById("categoryDropdown");
-                var selectedCategoryText = dropdown.options[dropdown.selectedIndex].text;
-              //var  MemberPrimaryCategory= selectedText;
-              var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown");
-              var selectedSubCategoryText = MemberSecondaryCategory.options[MemberSecondaryCategory.selectedIndex].text;
+                            var dropdownSub = document.getElementById("subcategoryDropdown");
 
+                                    var MemberSecondaryCategory = null;
+                                    if(dropdownSub!=null && dropdownSub > 0)
+                                    {
+                                            MemberSecondaryCategory = dropdownSub.options[dropdownSub.selectedIndex].text;
+                                    }
+                                    
 
-            const searchModel = {
-                        memberKeywords: $('#memberKeywords').val(),
-                        memberFirstName: $('#memberFirstName').val(),
-                        memberLastName: $('#memberLastName').val(),
-                        memberCompanyName: $('#MemberCompanyName').val(),
-                        memberCity: MemberCity,
-                        memberPrimaryCategory: selectedCategoryText,
-                        memberSecondaryCategory: selectedSubCategoryText,
-                        memberCountryId: MemberCountryId,
-                        currentPage:1
-                }
-                debugger;
+              // var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown").value;
+              debugger
                    $.ajax({
                             url: '/Members/SearchWithCookie',
                         type: 'POST',
-                        // data: { MemberCity: MemberCity, MemberCountryId:MemberCountryId, MemberCompanyName:MemberCompanyName },
-                            contentType: 'application/json',
-                            data: JSON.stringify(searchModel),
-                            success: function(response) {
+                            data: {     
+                                        MemberCity: MemberCity,
+                                        MemberCountryId: MemberCountryId,
+                                        MemberCompanyName: MemberCompanyName,
+                                        MemberLastName: MemberLastName,
+                                        MemberFirstName: MemberFirstName,
+                                        MemberKeywords: MemberKeywords,
+                                            MemberPrimaryCategory: MemberPrimaryCategory,
+                                            MemberPrimaryCategoryId: MemberPrimaryCategoryId,
+                                        MemberSecondaryCategory: MemberSecondaryCategory 
+                                   },
+
+                        success: function(response) {
                             debugger
                    // // Response should include members array and totalPages count
                    // totalPages = response.totalPages;
@@ -480,7 +490,7 @@
                          <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a></td>
                          <td>${member.chapter}</td>
                          <td>${member.company}</td>
-                         <td>${member.MemberCountryId}</td>
+                             <td>${member.country}</td>
                          <td>${member.category}</td>
                          <td id="socialLinksContainer-${member.userId}">
                            <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
