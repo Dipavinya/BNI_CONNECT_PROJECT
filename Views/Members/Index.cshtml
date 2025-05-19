@@ -57,7 +57,7 @@
                                     <label for="MemberCity">City</label>
                                     <input type="text" class="form-control" name="MemberCity" id="MemberCity" value="@Model.SearchParams.MemberCity" placeholder="City">
                                 </div>
-                               
+
                                 <div class="form-group col-md-4">
                                     <label for="categoryDropdown">Primary Category</label>
                                     <select class="form-control" id="categoryDropdown" name="MemberPrimaryCategory" onchange="updateSubcategories()">
@@ -101,6 +101,7 @@
                         <input type="hidden" id="currentPage" name="currentPage" value="@Model.SearchParams.CurrentPage" />
                         <button type="submit" class="btn btn-primary float-end me-2" id="clearFilterButton"><i class="ri-refresh-line"></i> Clear Filter</button>
                         <button type="button" onclick="searchmembers()" class="btn btn-primary float-end me-2"><i class="ri-search-line"></i> Search</button>
+
                     </form>
                 </div>
             </div>
@@ -116,25 +117,25 @@
             <form id="gmailForm" method="post" onsubmit="sendEmail(event)" enctype="multipart/form-data">
                 <div class="alert alert-primary" style="display:none;" role="alert" id="divGmailMessage"></div>
                 <label for="GmailSettingSelect" class="form-label">Select DisplayName</label>
-                    <select asp-for="LastTemplateId" class="form-select" id="gmailSettingSelect" required>
-                        @foreach (var template in Model.MailSettings)
-                        {
-                                 <option value="@template.Id" data-settingid="@template.Id" data-settingclientid="@template.ClientId" data-gmail="@template.UserMail" data-appkey="@template.GmailAppKey">@template.DisplayName</option>
-                        }
-                    </select>
-                    <div class="mb-2" id="templateDetail">
-                        <div class="mb-2">
-                            <label for="settingEmail" class="form-label">User Email</label>
-                            <input id="settingEmail" class="form-control" />
-                        </div>
-                        <div class="mb-2">
-                            <label for="settingAppKey" class="form-label">GmailAppKey</label>
-                            <input id="settingAppKey" class="form-control" />
-                        </div>
-                        <input type="hidden" id="settingId"  />
-                        <input type="hidden" id="settingClientId" />
+                <select asp-for="LastTemplateId" class="form-select" id="gmailSettingSelect" required>
+                    @foreach (var template in Model.MailSettings)
+                    {
+                        <option value="@template.Id" data-settingid="@template.Id" data-settingclientid="@template.ClientId" data-gmail="@template.UserMail" data-appkey="@template.GmailAppKey">@template.DisplayName</option>
+                    }
+                </select>
+                <div class="mb-2" id="templateDetail">
+                    <div class="mb-2">
+                        <label for="settingEmail" class="form-label">User Email</label>
+                        <input id="settingEmail" class="form-control" />
                     </div>
-                
+                    <div class="mb-2">
+                        <label for="settingAppKey" class="form-label">GmailAppKey</label>
+                        <input id="settingAppKey" class="form-control" />
+                    </div>
+                    <input type="hidden" id="settingId" />
+                    <input type="hidden" id="settingClientId" />
+                </div>
+
                 <div class="mb-2">
                     <label for="templateSelect" class="form-label">Select Template</label>
                     <select asp-for="LastTemplateId" class="form-select" id="templateSelect" required>
@@ -309,7 +310,7 @@
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     </div>
-                    <table  class="table table-striped">
+                    <table id="memberTable" class="table table-striped">
                         <thead>
                             <tr>
                                 <th class="m-1"><input type="checkbox" class="memberCheckbox form-check-input" id="checkAll"> SelectAll</th>
@@ -325,7 +326,7 @@
                         <tbody id="membersTableBody">
                             <!-- Members will be appended here -->
                         </tbody>
-                       @*  <tbody>
+                        @*  <tbody>
                             @foreach (var member in Model.Members)
                             {
                                 <tr>
@@ -347,177 +348,272 @@
                             }
                         </tbody> *@
                     </table>
+
                     <div class="row">
                         <div class="col d-flex justify-content-end">
                             <button id="previousPage" type="submit" class="btn btn-primary me-2" style="display:none;">Previous</button>
 
-                            <div id="pageButtonsContainer" class="pagination gap-1" style="display: none;">
-                                @for (var i = 1; i <= Model.SearchParams.TotalPages; i++)
-                                {
-                                    <button type="button" class="btn btn-outline-primary pageButton" data-page="@i">@i</button>
-                                }
-                            </div>
+                            <div id="pagination" class="mt-3"></div>
+
 
                             <button id="nextPage" type="submit" class="btn btn-primary ms-2" style="display:none;">Next</button>
                         </div>
 
+                    </div>
                 </div>
-            </div>  
+            </div>
         </div>
-    </div>
-    <!-- Error Modal -->
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body" id="modalErrorMessage">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- Error Modal -->
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-body" id="modalErrorMessage">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        async function updateSubcategories() {
-            const categoryDropdown = document.getElementById("categoryDropdown");
-            const subcategoryDropdown = document.getElementById("subcategoryDropdown");
-            const subcategoryContainer = document.getElementById("subcategoryContainer");
+    @section Scripts {
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script>
+            async function updateSubcategories() {
+                const categoryDropdown = document.getElementById("categoryDropdown");
+                const subcategoryDropdown = document.getElementById("subcategoryDropdown");
+                const subcategoryContainer = document.getElementById("subcategoryContainer");
 
-            subcategoryDropdown.innerHTML = '<option value="">Select Subcategory</option>';
+                subcategoryDropdown.innerHTML = '<option value="">Select Subcategory</option>';
 
-            const selectedCategory = categoryDropdown.value;
+                const selectedCategory = categoryDropdown.value;
 
-            if (!selectedCategory) {
-                subcategoryContainer.style.display = 'none';
-                return;
-            }
-            try {
-                const response = await fetch(`/Members/GetSubcategoryById?catCode=${selectedCategory}`);
-                const result = await response.json();
-
-                if (result.status === "Success" && result.data && result.data.length > 0) {
-                    subcategoryContainer.style.display = 'block';
-
-                    result.data.forEach(subcategory => {
-                        console.log(subcategory);
-                        const option = document.createElement("option");
-                        option.value = subcategory.subCode;
-                        option.textContent = subcategory.subCategory;
-                        subcategoryDropdown.appendChild(option);
-                    });
-                } else {
+                if (!selectedCategory) {
                     subcategoryContainer.style.display = 'none';
-                    toastr.error(`Error fetching subcategories`);
+                    return;
                 }
-            } catch (error) {
-                console.error('Error fetching subcategories:', error);
-                toastr.error(`Error fetching subcategories`);
-                subcategoryContainer.style.display = 'none';
+                try {
+                    const response = await fetch(`/Members/GetSubcategoryById?catCode=${selectedCategory}`);
+                    const result = await response.json();
+
+                    if (result.status === "Success" && result.data && result.data.length > 0) {
+                        subcategoryContainer.style.display = 'block';
+
+                        result.data.forEach(subcategory => {
+                            console.log(subcategory);
+                            const option = document.createElement("option");
+                            option.value = subcategory.subCode;
+                            option.textContent = subcategory.subCategory;
+                            subcategoryDropdown.appendChild(option);
+                        });
+                    } else {
+                        subcategoryContainer.style.display = 'none';
+                        toastr.error(`Error fetching subcategories`);
+                    }
+                } catch (error) {
+                    console.error('Error fetching subcategories:', error);
+                    toastr.error(`Error fetching subcategories`);
+                    subcategoryContainer.style.display = 'none';
+                }
             }
-        }
+               
 
-        async function searchmembers()
-        {
-                           // var dropdown = document.getElementById("categoryDropdown");
-            //                    var dropdown = document.getElementById("subcategoryDropdown");
-            // var selectedText = dropdown.options[dropdown.selectedIndex].text;
-            // alert("Selected Text: " + selectedText);
+                async function searchmembers()
 
-            var MemberCity= document.getElementById("MemberCity").value;
-            var MemberCountryId= document.getElementById("MemberCountryId").value;
-            var MemberCompanyName= document.getElementById("memberCompanyName").value;
-               var MemberLastName= document.getElementById("memberLastName").value;
-               var MemberFirstName= document.getElementById("memberFirstName").value;
-               var MemberKeywords= document.getElementById("memberKeywords").value;
-                  var  MemberPrimaryCategoryId= document.getElementById("categoryDropdown").value;
-
-                        var dropdown = document.getElementById("categoryDropdown");
-
-                         var MemberPrimaryCategory=null;
-                         if(dropdown!=null && dropdown>0)
-                         {
-                                MemberPrimaryCategory = dropdown.options[dropdown.selectedIndex].text;
-                         }
+                {
 
 
-                            var dropdownSub = document.getElementById("subcategoryDropdown");
 
-                                    var MemberSecondaryCategory = null;
-                                    if(dropdownSub!=null && dropdownSub > 0)
-                                    {
-                                            MemberSecondaryCategory = dropdownSub.options[dropdownSub.selectedIndex].text;
-                                    }
-                                    
+                               // var dropdown = document.getElementById("categoryDropdown");
+                //                    var dropdown = document.getElementById("subcategoryDropdown");
+                // var selectedText = dropdown.options[dropdown.selectedIndex].text;
+                // alert("Selected Text: " + selectedText);
 
-              // var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown").value;
-              debugger
-                   $.ajax({
-                            url: '/Members/SearchWithCookie',
+                var MemberCity= document.getElementById("MemberCity").value;
+                var MemberCountryId= document.getElementById("MemberCountryId").value;
+                var MemberCompanyName= document.getElementById("memberCompanyName").value;
+                var MemberLastName= document.getElementById("memberLastName").value;
+                var MemberFirstName= document.getElementById("memberFirstName").value;
+                var MemberKeywords= document.getElementById("memberKeywords").value;
+                var  MemberPrimaryCategoryId= document.getElementById("categoryDropdown").value;
+
+                var dropdown = document.getElementById("categoryDropdown");
+
+                var MemberPrimaryCategory=null;
+                if(dropdown!=null && dropdown>0)
+                {
+                    MemberPrimaryCategory = dropdown.options[dropdown.selectedIndex].text;
+                }
+                var dropdownSub = document.getElementById("subcategoryDropdown");
+                
+                var MemberSecondaryCategory = null;
+                if(dropdownSub!=null && dropdownSub > 0)
+                {
+                    MemberSecondaryCategory = dropdownSub.options[dropdownSub.selectedIndex].text;
+                }
+
+
+                  // var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown").value;
+                debugger
+                $.ajax({
+                        url: '/Members/SearchWithCookie',
                         type: 'POST',
-                            data: {     
-                                        MemberCity: MemberCity,
-                                        MemberCountryId: MemberCountryId,
-                                        MemberCompanyName: MemberCompanyName,
-                                        MemberLastName: MemberLastName,
-                                        MemberFirstName: MemberFirstName,
-                                        MemberKeywords: MemberKeywords,
+                        data: {
+                                            MemberCity: MemberCity,
+                                            MemberCountryId: MemberCountryId,
+                                            MemberCompanyName: MemberCompanyName,
+                                            MemberLastName: MemberLastName,
+                                            MemberFirstName: MemberFirstName,
+                                            MemberKeywords: MemberKeywords,
                                             MemberPrimaryCategory: MemberPrimaryCategory,
                                             MemberPrimaryCategoryId: MemberPrimaryCategoryId,
-                                        MemberSecondaryCategory: MemberSecondaryCategory 
-                                   },
+                                            MemberSecondaryCategory: MemberSecondaryCategory,
+                                           
+                        },
+                             success: function (response) {
+                    if ($.fn.DataTable.isDataTable('#memberTable')) {
+                        $('#memberTable').DataTable().destroy();
+                    }
+                    debugger
+                    let tbody = $('#membersTableBody');
+                    tbody.empty();
 
-                        success: function(response) {
-                            debugger
-                   // // Response should include members array and totalPages count
-                   // totalPages = response.totalPages;
-                   // currentPage = page;
+                    $.each(response.members, function (i, member) {
+                        let row = `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="memberCheckbox form-check-input" data-name="${member.name}" value="${member.userId}">
+                                </td>
+                                <td>
+                                    <a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a>
+                                </td>
+                                <td>${member.chapter || ''}</td>
+                                <td>${member.company || ''}</td>
+                                <td>${member.category || ''}</td>
+                                <td>${member.category || ''}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
+                                </td>
+                                <td>
+                                    <i class="ri-${member.connectionSent ? 'checkbox' : 'close'}-circle-fill fs-22"></i>
+                                </td>
+                            </tr>`;
+                        tbody.append(row);
+                    });
+                    debugger
+                            $('#memberTable').DataTable({
+                paging: true,
+                searching: false,
+                ordering: true,
+                pageLength: 25,       // rows per page
+                lengthChange: true,   // let user change rows per page
+                // autoWidth: false,
+                // optional: add responsive or other configs here
+            });
+                }
+            });
+            // Optionally load initial data
+            // $(document).ready(function () {
+            //     searchmembers();
+            // });
+                   //          success: function(response) {
+                   //              debugger
+                   //     // // Response should include members array and totalPages count
+                   //     // totalPages = response.totalPages;
+                   //     currentPage = response.currentPage;
 
-                   // Clear table body first
-                   $('#membersTableBody').empty();
+                   //     // Clear table body first
+                   //     $('#membersTableBody').empty();
 
-                   // Append new rows
-                   response.members.forEach(member => {
-                     $('#membersTableBody').append(`
-                       <tr>
-                         <td><input type="checkbox" class="memberCheckbox" data-name="${member.name}" value="${member.userId}"></td>
-                         <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a></td>
-                         <td>${member.chapter}</td>
-                         <td>${member.company}</td>
-                             <td>${member.country}</td>
-                         <td>${member.category}</td>
-                         <td id="socialLinksContainer-${member.userId}">
-                           <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
-                         </td>
-                         <td><i class='ri-${member.ConnectionSent ? "checkbox" : "close"}-circle-fill fs-22'></i></td>
-                       </tr>
-                     `);
-                   });
+                   //     // Append new rows
+                   //     response.members.forEach(member => {
+                   //       $('#membersTableBody').append(`
+                   //         <tr>
+                   //           <td><input type="checkbox" class="memberCheckbox" data-name="${member.name}" value="${member.userId}"></td>
+                   //           <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a></td>
+                   //           <td>${member.chapter}</td>
+                   //           <td>${member.company}</td>
+                   //               <td>${member.country}</td>
+                   //           <td>${member.category}</td>
+                   //           <td id="socialLinksContainer-${member.userId}">
+                   //             <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
+                   //           </td>
+                   //           <td><i class='ri-${member.ConnectionSent ? "checkbox" : "close"}-circle-fill fs-22'></i></td>
+                   //         </tr>
+                   //       `);
+                   //     });
+                   //          renderPagination(response.totalPages, response.currentpage,response.members.length;
+                   //     // Update pagination buttons
+                   //     // renderPagination();
+                   //   },
+                   //   error: function() {
+                   //     alert('Failed to fetch members.');
+                   //   }
+                   // });
+                        //     success: function (data) {
+                        //         debugger
+                        //        alert(data.Members);
+                        //            // debugger
+                        //     }
+                        // });
 
-                   // Update pagination buttons
-                   // renderPagination();
-                 },
-                 error: function() {
-                   alert('Failed to fetch members.');
-                 }
-               });
-                    //     success: function (data) {
-                    //         debugger
-                    //        alert(data.Members);
-                    //            // debugger
-                    //     }
-                    // });
 
-        }
+            }
+                    
+                                function renderPagination(totalPages, currentPage,membersCount) {
+                                    debugger
+                const paginationContainer = $('#pagination');
+                paginationContainer.empty();
 
-    </script>
-  @*   <script>
+                if (totalPages <= 1) return;
+
+
+                       // Previous button (only if not on first page)
+            if (currentPage > 1) {
+                paginationContainer.append(`
+                    <button class="btn btn-sm btn-outline-secondary me-1"
+                            onclick="searchmembers(${currentPage - 1})">Previous</button>
+                `);
+            }
+
+            // Calculate page range to show: max 3 pages
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + 2);
+
+            // Shift range if near the end and only showing 1-2 pages
+            if (endPage - startPage < 2) {
+                startPage = Math.max(1, endPage - 2);
+            }
+
+            if(membersCount!=0){
+
+                for (let i = startPage; i <= endPage && i <= totalPages; i++) {
+                    paginationContainer.append(`
+                        <button class="btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-outline-primary'} me-1"
+                                onclick="searchmembers(${i})">${i}</button>
+                    `);
+                }
+            }
+            else{
+                             paginationContainer.append(`<h5 class="text-danger">No Data Found</h5>`);
+            }
+            
+
+            // Next button (only if not on last page)
+            if (currentPage < totalPages && members!=0) {
+                paginationContainer.append(`
+                    <button class="btn btn-sm btn-outline-secondary"
+                            onclick="searchmembers(${currentPage + 1})">Next</button>
+                `);
+            }
+            }
+
+        </script>
+        @*   <script>
             $("#searchForm").on("click", function() {
                var formData = new FormData();
                formData.append("memberCompanyName", $("#memberCompanyName").val());
@@ -538,581 +634,482 @@
                });
 
     </script> *@
-    <script>
-        var MembersData = '@Model.Members.Count'
-        const nextBtn = document.getElementById("nextPage");
-        const pageContainer = document.getElementById("pageButtonsContainer");
-        if(MembersData > 0){
-            nextBtn.style.display = "flex";
-            pageContainer.style.display = "flex"; 
-        }
-        let currentPageInput = document.getElementById("currentPage");
-        let currentPage;
-            let totalPages = @Model.SearchParams.TotalPages;
-        currentPage = parseInt(currentPageInput.value) || 1;
-        const prevBtn = document.getElementById("previousPage");
-        if (currentPage >= 2) {
-            prevBtn.style.display = "flex";
-        }
-
-        if (!localStorage.getItem("pageValue")) {
-                localStorage.removeItem("pageValue");
+        <script>
+            var MembersData = '@Model.Members.Count'
+            const nextBtn = document.getElementById("nextPage");
+            const pageContainer = document.getElementById("pageButtonsContainer");
+            if(MembersData > 0){
+                nextBtn.style.display = "flex";
+                pageContainer.style.display = "flex";
             }
-
-        document.getElementById("nextPage").addEventListener("click", function (event) {
-            event.preventDefault(); 
-
             let currentPageInput = document.getElementById("currentPage");
             let currentPage;
+                let totalPages = @Model.SearchParams.TotalPages;
             currentPage = parseInt(currentPageInput.value) || 1;
-
-            currentPage++;
-
-            currentPageInput.value = currentPage;
-                updatePagination();
-            document.getElementById("searchForm").submit();
-        });
-
-        document.getElementById("previousPage").addEventListener("click", function (event) {
-            event.preventDefault();
-
-            let currentPageInput = document.getElementById("currentPage");
-            let currentPage;
-            currentPage = parseInt(currentPageInput.value) || 1;
-
-            currentPage--;
-
-            currentPageInput.value = currentPage;
-                updatePagination();
-            document.getElementById("searchForm").submit();
-        });
-
-           
-            function updatePagination() {
-                const pageButtonsContainer = document.getElementById("pageButtonsContainer");
-                pageButtonsContainer.innerHTML = ''; 
-
-                let startPage = Math.max(1, currentPage - 1); 
-                let endPage = Math.min(totalPages, currentPage + 1); 
-
-                if (currentPage === totalPages) {
-                    startPage = Math.max(1, totalPages - 2); 
-                    endPage = totalPages;
-                } else if (currentPage === 1) {
-                    endPage = Math.min(totalPages, 3); 
-                }
-
-                for (let i = startPage; i <= endPage; i++) {
-                    const button = document.createElement("button");
-                    button.textContent = i;
-                    button.className = "btn btn-outline-primary pageButton";
-                    button.setAttribute("data-page", i);
-
-                    if (i === currentPage) {
-                        button.classList.add("active");
-                    }
-
-                    button.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        currentPage = i;
-                        currentPageInput.value = currentPage;
-                        updatePagination();
-                        document.getElementById("searchForm").submit(); 
-                    });
-
-                    pageButtonsContainer.appendChild(button); 
-                }
+            const prevBtn = document.getElementById("previousPage");
+            if (currentPage >= 2) {
+                prevBtn.style.display = "flex";
             }
 
-            window.addEventListener('load', updatePagination);
-          
-    </script>
-
-    <script type="text/javascript">
-
-        const searchForm = document.getElementById("searchForm");
-        const tableLoader = document.getElementById("tableLoader");
-        searchForm.addEventListener("submit", function () {
-            tableLoader.style.display = "flex";
-        });
-
-        function validateForm() {
-            var isValid = false;
-
-            var fields = ['#memberKeywords', '#memberFirstName', '#memberLastName', '#memberCompanyName', '#MemberCountryId', '#MemberCity', '#memberState', '#categoryDropdown', '#subcategoryDropdown'];
-
-            fields.forEach(function (id) {
-                if (document.querySelector(id).value.trim() !== "") {
-                    isValid = true;
+            if (!localStorage.getItem("pageValue")) {
+                    localStorage.removeItem("pageValue");
                 }
-            });
 
-            if (!isValid) {
-                document.getElementById('error-message').style.display = 'block';
-                return false;
-            }
-
-            document.getElementById('error-message').style.display = 'none';
-            return true;
-        }
-
-        $(document).ready(function () {
-            $('#membersTable').DataTable({
-                paging: true,
-                searching: false,
-                ordering: true,
-                lengthChange: true,
-                // pageLength: 25,
-                columnDefs: [
-                    { orderable: false, targets: [0, 6, 7] } 
-                ],
-                language: {
-                    search: "Search members:",
-                    paginate: {
-                        previous: "Previous",
-                        next: "Next"
-                    }
-                }
-            });
-
-            $('#checkAll').on('click', function () {
-                $('.memberCheckbox').prop('checked', this.checked);
-            });
-        });
-
-        
-        document.getElementById('searchForm').addEventListener('submit', function (event) {
-            if (!validateForm()) {
+            document.getElementById("nextPage").addEventListener("click", function (event) {
                 event.preventDefault();
-                tableLoader.style.display = "none";
-            } else {
-                tableLoader.style.display = "flex";
-            }
-        });
 
-        document.getElementById('clearFilterButton').addEventListener('click', function () {
-            const errorMessage = document.getElementById('error-message');
-            tableLoader.style.display = "none";
+                let currentPageInput = document.getElementById("currentPage");
+                let currentPage;
+                currentPage = parseInt(currentPageInput.value) || 1;
 
-            const form = document.getElementById('searchForm');
-            form.querySelectorAll('input').forEach(input => {
-                input.value = '';
+                currentPage++;
+
+                currentPageInput.value = currentPage;
+                    updatePagination();
+                document.getElementById("searchForm").submit();
             });
 
-            form.querySelectorAll('select').forEach(select => {
-                select.selectedIndex = 0;
+            document.getElementById("previousPage").addEventListener("click", function (event) {
+                event.preventDefault();
+
+                let currentPageInput = document.getElementById("currentPage");
+                let currentPage;
+                currentPage = parseInt(currentPageInput.value) || 1;
+
+                currentPage--;
+
+                currentPageInput.value = currentPage;
+                    updatePagination();
+                document.getElementById("searchForm").submit();
             });
 
-            if (errorMessage) {
-                errorMessage.style.display = 'none';
-            }
 
-            tableLoader.style.display = "none";
-        });
+                function updatePagination() {
+                    const pageButtonsContainer = document.getElementById("pageButtonsContainer");
+                    pageButtonsContainer.innerHTML = '';
 
-        document.addEventListener("DOMContentLoaded", function () {
-            
-            document.addEventListener("click", function (event) {
-                if (event.target.classList.contains("getSocialLinkButton")) {
-                    const button = event.target;
-                    const userId = button.getAttribute("data-userid");
-                    const socialLinksContainer = document.getElementById(`socialLinksContainer-${userId}`);
+                    let startPage = Math.max(1, currentPage - 1);
+                    let endPage = Math.min(totalPages, currentPage + 1);
 
-                    socialLinksContainer.innerHTML = `
-                                <div id="loadingSpinner-${userId}" class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            `;
+                    if (currentPage === totalPages) {
+                        startPage = Math.max(1, totalPages - 2);
+                        endPage = totalPages;
+                    } else if (currentPage === 1) {
+                        endPage = Math.min(totalPages, 3);
+                    }
 
-                    // Fetch the social links
-                    fetch(`/Members/GetSocialLinks?userId=${userId}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
+                    for (let i = startPage; i <= endPage; i++) {
+                        const button = document.createElement("button");
+                        button.textContent = i;
+                        button.className = "btn btn-outline-primary pageButton";
+                        button.setAttribute("data-page", i);
+
+                        if (i === currentPage) {
+                            button.classList.add("active");
                         }
-                    })
-                        .then(async response => {
-                            if (response.ok) {
-                                const userProfile = await response.json();
-                                console.log(`Data for userId ${userId}:`, userProfile);
 
-                                // Display social links
-                                displaySocialLinks(userProfile.socialNetworkLinks, userId);
+                        button.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            currentPage = i;
+                            currentPageInput.value = currentPage;
+                            updatePagination();
+                            document.getElementById("searchForm").submit();
+                        });
 
-                                // Hide the button after successful API call
-                                button.style.display = "none";
+                        pageButtonsContainer.appendChild(button);
+                    }
+                }
 
-                            } else {
+                window.addEventListener('load', updatePagination);
+
+        </script>
+
+        <script type="text/javascript">
+
+            const searchForm = document.getElementById("searchForm");
+            const tableLoader = document.getElementById("tableLoader");
+            searchForm.addEventListener("submit", function () {
+                tableLoader.style.display = "flex";
+            });
+
+            function validateForm() {
+                var isValid = false;
+
+                var fields = ['#memberKeywords', '#memberFirstName', '#memberLastName', '#memberCompanyName', '#MemberCountryId', '#MemberCity', '#memberState', '#categoryDropdown', '#subcategoryDropdown'];
+
+                fields.forEach(function (id) {
+                    if (document.querySelector(id).value.trim() !== "") {
+                        isValid = true;
+                    }
+                });
+
+                if (!isValid) {
+                    document.getElementById('error-message').style.display = 'block';
+                    return false;
+                }
+
+                document.getElementById('error-message').style.display = 'none';
+                return true;
+            }
+
+            $(document).ready(function () {
+                $('#membersTable').DataTable({
+                    paging: true,
+                    searching: false,
+                    ordering: true,
+                    lengthChange: true,
+                    // pageLength: 25,
+                    columnDefs: [
+                        { orderable: false, targets: [0, 6, 7] }
+                    ],
+                    language: {
+                        search: "Search members:",
+                        paginate: {
+                            previous: "Previous",
+                            next: "Next"
+                        }
+                    }
+                });
+
+                $('#checkAll').on('click', function () {
+                    $('.memberCheckbox').prop('checked', this.checked);
+                });
+            });
+
+
+            document.getElementById('searchForm').addEventListener('submit', function (event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                    tableLoader.style.display = "none";
+                } else {
+                    tableLoader.style.display = "flex";
+                }
+            });
+
+            document.getElementById('clearFilterButton').addEventListener('click', function () {
+                const errorMessage = document.getElementById('error-message');
+                tableLoader.style.display = "none";
+
+                const form = document.getElementById('searchForm');
+                form.querySelectorAll('input').forEach(input => {
+                    input.value = '';
+                });
+
+                form.querySelectorAll('select').forEach(select => {
+                    select.selectedIndex = 0;
+                });
+
+                if (errorMessage) {
+                    errorMessage.style.display = 'none';
+                }
+
+                tableLoader.style.display = "none";
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                document.addEventListener("click", function (event) {
+                    if (event.target.classList.contains("getSocialLinkButton")) {
+                        const button = event.target;
+                        const userId = button.getAttribute("data-userid");
+                        const socialLinksContainer = document.getElementById(`socialLinksContainer-${userId}`);
+
+                        socialLinksContainer.innerHTML = `
+                                    <div id="loadingSpinner-${userId}" class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                `;
+
+                        // Fetch the social links
+                        fetch(`/Members/GetSocialLinks?userId=${userId}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            }
+                        })
+                            .then(async response => {
+                                if (response.ok) {
+                                    const userProfile = await response.json();
+                                    console.log(`Data for userId ${userId}:`, userProfile);
+
+                                    // Display social links
+                                    displaySocialLinks(userProfile.socialNetworkLinks, userId);
+
+                                    // Hide the button after successful API call
+                                    button.style.display = "none";
+
+                                } else {
+                                    socialLinksContainer.innerHTML = `
+                                                <button class="btn btn-danger btn-sm getSocialLinkButton" data-userid="${userId}">No Links Available</button>
+                                            `;
+                                    console.error(`Failed to retrieve profile for userId ${userId}`);
+                                }
+                            })
+                            .catch(error => {
+                                // Handle errors
                                 socialLinksContainer.innerHTML = `
                                             <button class="btn btn-danger btn-sm getSocialLinkButton" data-userid="${userId}">No Links Available</button>
                                         `;
-                                console.error(`Failed to retrieve profile for userId ${userId}`);
-                            }
-                        })
-                        .catch(error => {
-                            // Handle errors
-                            socialLinksContainer.innerHTML = `
-                                        <button class="btn btn-danger btn-sm getSocialLinkButton" data-userid="${userId}">No Links Available</button>
-                                    `;
-                            console.error(`Error retrieving profile for userId ${userId}:`, error);
-                        });
-                }
+                                console.error(`Error retrieving profile for userId ${userId}:`, error);
+                            });
+                    }
+                });
             });
-        });
 
-        // Function to display social links
-        const displaySocialLinks = (links, userId) => {
-            const socialLinksContainer = document.getElementById(`socialLinksContainer-${userId}`);
-            if (!socialLinksContainer) return;
-            if (links.length <= 0 ) 
-            {
-                    socialLinksContainer.innerHTML = `<p>No links available</p>`;
-                    return;
-            }
-            
-            socialLinksContainer.innerHTML = ''; 
-
-            links.forEach(link => {
-                let url = link;
-                if (url.includes("Facebook:")) {
-                    url = url.replace("Facebook:", "").trim();
-                } else if (url.includes("Instagram:")) {
-                    url = url.replace("Instagram:", "").trim();
-                } else if (url.includes("LinkedIn:")) {
-                    url = url.replace("LinkedIn:", "").trim();
-                }
-                let iconClass = '';
-                if (url.includes("linkedin")) {
-                    iconClass = 'ri-linkedin-box-fill';
-                } else if (url.includes("facebook")) {
-                    iconClass = 'ri-facebook-box-fill';
-                } else if (url.includes("instagram")) {
-                    iconClass = 'ri-instagram-fill';
+            // Function to display social links
+            const displaySocialLinks = (links, userId) => {
+                const socialLinksContainer = document.getElementById(`socialLinksContainer-${userId}`);
+                if (!socialLinksContainer) return;
+                if (links.length <= 0 )
+                {
+                        socialLinksContainer.innerHTML = `<p>No links available</p>`;
+                        return;
                 }
 
-                // Append each link with its icon
-                socialLinksContainer.innerHTML += `
-                            <a href="${url}" target="_blank" class="me-2">
-                                <i class="${iconClass} fs-4"></i>
-                            </a>
-                        `;
-            });
-        };
+                socialLinksContainer.innerHTML = '';
+
+                links.forEach(link => {
+                    let url = link;
+                    if (url.includes("Facebook:")) {
+                        url = url.replace("Facebook:", "").trim();
+                    } else if (url.includes("Instagram:")) {
+                        url = url.replace("Instagram:", "").trim();
+                    } else if (url.includes("LinkedIn:")) {
+                        url = url.replace("LinkedIn:", "").trim();
+                    }
+                    let iconClass = '';
+                    if (url.includes("linkedin")) {
+                        iconClass = 'ri-linkedin-box-fill';
+                    } else if (url.includes("facebook")) {
+                        iconClass = 'ri-facebook-box-fill';
+                    } else if (url.includes("instagram")) {
+                        iconClass = 'ri-instagram-fill';
+                    }
+
+                    // Append each link with its icon
+                    socialLinksContainer.innerHTML += `
+                                <a href="${url}" target="_blank" class="me-2">
+                                    <i class="${iconClass} fs-4"></i>
+                                </a>
+                            `;
+                });
+            };
 
 
-        let selectedUser = [];
-
-       
+            let selectedUser = [];
 
 
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('gmailButton').addEventListener('click', function (e) {
-                e.preventDefault();
-                $('#sendEmailbtn').prop('disabled', true);
-                var selectedMembers = $('.memberCheckbox:checked').map(function () {
-                    return $(this).val();
-                }).get();
 
-                if (selectedMembers.length === 0) {
-                    alert("Please select at least one member.");
-                    $('#sendEmailbtn').prop('disabled', false).text('Send Message');
-                    return;
-                }
-                selectedUser = selectedMembers;
-                $.ajax({
-                    url: '@Url.Action("HandleCheckBox", "Members")',
-                    type: 'POST',
-                    data: { userIds: selectedMembers },
-                    success: function (response) {
-                            if (response && response.length > 0) {
-                                let rateLimitedUsers = response.filter(user => user.statusCode === 429);
-                                toastr.success("User info fetched succesfully");
 
-                                if (rateLimitedUsers.length > 0) {
-                                    let rateLimitedIds = rateLimitedUsers.map(user => user.userId).join(', ');
-                                    toastr.error(`Rate limit exceeded for users: ${rateLimitedIds}. Try again later.`);
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('gmailButton').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    $('#sendEmailbtn').prop('disabled', true);
+                    var selectedMembers = $('.memberCheckbox:checked').map(function () {
+                        return $(this).val();
+                    }).get();
+
+                    if (selectedMembers.length === 0) {
+                        alert("Please select at least one member.");
+                        $('#sendEmailbtn').prop('disabled', false).text('Send Message');
+                        return;
+                    }
+                    selectedUser = selectedMembers;
+                    $.ajax({
+                        url: '@Url.Action("HandleCheckBox", "Members")',
+                        type: 'POST',
+                        data: { userIds: selectedMembers },
+                        success: function (response) {
+                                if (response && response.length > 0) {
+                                    let rateLimitedUsers = response.filter(user => user.statusCode === 429);
+                                    toastr.success("User info fetched succesfully");
+
+                                    if (rateLimitedUsers.length > 0) {
+                                        let rateLimitedIds = rateLimitedUsers.map(user => user.userId).join(', ');
+                                        toastr.error(`Rate limit exceeded for users: ${rateLimitedIds}. Try again later.`);
+                                    }
                                 }
-                            }
 
-                        $('#sendEmailbtn').prop('disabled', false).text('Send Message');
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error:", error);
-                        alert("Failed to send connections. Please try again.");
-                        $('#sendEmailbtn').prop('disabled', false).text('Send Message');
-                    }
+                            $('#sendEmailbtn').prop('disabled', false).text('Send Message');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            alert("Failed to send connections. Please try again.");
+                            $('#sendEmailbtn').prop('disabled', false).text('Send Message');
+                        }
+                    });
+
+
                 });
 
-                
-            });
 
-            
 
-            document.getElementById('WhatsappMessageButton').addEventListener('click', function (e) {
-                e.preventDefault();
-                $('#sendWhatsappMsgbtn').prop('disabled', true).text('Sending...');
+                document.getElementById('WhatsappMessageButton').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    $('#sendWhatsappMsgbtn').prop('disabled', true).text('Sending...');
 
-                var selectedMembers = $('.memberCheckbox:checked').map(function () {
-                    return $(this).val();
-                }).get();
+                    var selectedMembers = $('.memberCheckbox:checked').map(function () {
+                        return $(this).val();
+                    }).get();
 
-                if (selectedMembers.length === 0) {
-                    alert("Please select at least one member.");
-                    $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
-                    return;
-                }
-
-                $.ajax({
-                    url: '@Url.Action("HandleCheckBox", "Members")',
-                    type: 'POST',
-                    data: { userIds: selectedMembers },
-                    success: function (response) {
-                        toastr.success("User info fetched succesfully");
+                    if (selectedMembers.length === 0) {
+                        alert("Please select at least one member.");
                         $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Error:", error);
-                        alert("Failed to send connections. Please try again.");
-                        $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                        return;
                     }
+
+                    $.ajax({
+                        url: '@Url.Action("HandleCheckBox", "Members")',
+                        type: 'POST',
+                        data: { userIds: selectedMembers },
+                        success: function (response) {
+                            toastr.success("User info fetched succesfully");
+                            $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            alert("Failed to send connections. Please try again.");
+                            $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                        }
+                    });
+
                 });
-                
+
+
+
+                document.getElementById('sendConnectionbutton').addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    $('#sendConnectionbtn').prop('disabled', true).text('Sending...');
+
+                    var selectedMembers = $('.memberCheckbox:checked').map(function () {
+                        return $(this).val();
+                    }).get();
+
+                    if (selectedMembers.length === 0) {
+                        alert("Please select at least one member.");
+                        $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
+                        return;
+                    }
+
+                    $.ajax({
+                        url: '@Url.Action("HandleCheckBox", "Members")',
+                        type: 'POST',
+                        data: { userIds: selectedMembers },
+                        success: function (response) {
+                            toastr.success("User info fetched succesfully");
+                            $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error:", error);
+                            alert("Failed to send connections. Please try again.");
+                            $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
+                        }
+                    });
+                });
+
             });
 
-            
 
-            document.getElementById('sendConnectionbutton').addEventListener('click', function (e) {
-                e.preventDefault();
+
+            function addConnection(event) {
+                event.preventDefault();
+
+                var emailBodyHtml = $('#snow-editor1').html();
+                var cleanEmailBody = cleanQuillHtml(emailBodyHtml);
 
                 $('#sendConnectionbtn').prop('disabled', true).text('Sending...');
 
                 var selectedMembers = $('.memberCheckbox:checked').map(function () {
-                    return $(this).val(); 
+                    var userId = $(this).val();
+                    var member = $(this).attr("data-name");
+                    return { UserId: userId, Name: member };
                 }).get();
 
-                if (selectedMembers.length === 0) {
-                    alert("Please select at least one member.");
-                    $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
-                    return;
-                }
-
                 $.ajax({
-                    url: '@Url.Action("HandleCheckBox", "Members")', 
-                    type: 'POST', 
-                    data: { userIds: selectedMembers }, 
+                    url: '@Url.Action("SendConnection", "Members")',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        IsFormSubmit: true,
+                        Members: selectedMembers,
+                        AddToMyConnectionsBody: cleanEmailBody
+                    }),
                     success: function (response) {
-                        toastr.success("User info fetched succesfully");
-                        $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
+                        $('#sendConnectionbtn').prop('disabled', false).text('Send');
+                        $("#divConnectionMessage").show();
+                        toastr.success(`Connection Request has been sent successfully: ` + response.join(", "));
+                        $("#divConnectionMessage").html("Connection Request has been sent successfully: " + response.join(", "));
+                        console.log("Connection added successfully:", response);
                     },
                     error: function (xhr, status, error) {
-                        console.error("Error:", error);
-                        alert("Failed to send connections. Please try again.");
-                        $('#sendConnectionbtn').prop('disabled', false).text('Send Connection');
+                        toastr.error(`Error occurred while adding connection`);
+                        console.error("Error occurred while adding connection:", error);
+                        $('#sendConnectionbtn').prop('disabled', false).text('Send');
                     }
                 });
-            });
+            }
 
-        });
+            $(document).ready(function () {
+                $("#checkAll").change(function () {
+                    var isChecked = $(this).prop('checked');
+                    $('.memberCheckbox').not('#checkAll').each(function () {
+                        $(this).prop('checked', isChecked);
+                        var userId = $(this).val();
+                        if (isChecked) {
+                            handleCheckBoxStatus(userId);
+                        } else {
+                            handleCheckBoxStatus(userId);
+                        }
+                    });
+                });
 
-        
-
-        function addConnection(event) {
-            event.preventDefault();
-
-            var emailBodyHtml = $('#snow-editor1').html();
-            var cleanEmailBody = cleanQuillHtml(emailBodyHtml);
-
-            $('#sendConnectionbtn').prop('disabled', true).text('Sending...');
-
-            var selectedMembers = $('.memberCheckbox:checked').map(function () {
-                var userId = $(this).val();
-                var member = $(this).attr("data-name");
-                return { UserId: userId, Name: member };
-            }).get();
-
-            $.ajax({
-                url: '@Url.Action("SendConnection", "Members")',
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    IsFormSubmit: true,
-                    Members: selectedMembers,
-                    AddToMyConnectionsBody: cleanEmailBody 
-                }),
-                success: function (response) {
-                    $('#sendConnectionbtn').prop('disabled', false).text('Send');
-                    $("#divConnectionMessage").show();
-                    toastr.success(`Connection Request has been sent successfully: ` + response.join(", "));
-                    $("#divConnectionMessage").html("Connection Request has been sent successfully: " + response.join(", "));
-                    console.log("Connection added successfully:", response);
-                },
-                error: function (xhr, status, error) {
-                    toastr.error(`Error occurred while adding connection`);
-                    console.error("Error occurred while adding connection:", error);
-                    $('#sendConnectionbtn').prop('disabled', false).text('Send');
-                }
-            });
-        }
-
-        $(document).ready(function () {
-            $("#checkAll").change(function () {
-                var isChecked = $(this).prop('checked');
-                $('.memberCheckbox').not('#checkAll').each(function () {
-                    $(this).prop('checked', isChecked);
-                    var userId = $(this).val();
-                    if (isChecked) {
-                        handleCheckBoxStatus(userId);
+                $('.memberCheckbox').not('#checkAll').change(function () {
+                    if ($('.memberCheckbox:checked').length === $('.memberCheckbox').not('#checkAll').length) {
+                        $('#checkAll').prop('checked', true);
                     } else {
-                        handleCheckBoxStatus(userId);
+                        $('#checkAll').prop('checked', false);
                     }
                 });
             });
 
-            $('.memberCheckbox').not('#checkAll').change(function () {
-                if ($('.memberCheckbox:checked').length === $('.memberCheckbox').not('#checkAll').length) {
-                    $('#checkAll').prop('checked', true);
-                } else {
-                    $('#checkAll').prop('checked', false);
+            $(document).click(function (event) {
+                var $target = $(event.target);
+
+                if ($('#offcanvasRight').hasClass('show') && !$target.closest('#offcanvasRight').length && !$target.is('[data-bs-toggle="offcanvas"]')) {
+                    var bsOffcanvas = new bootstrap.Offcanvas($('#offcanvasRight')[0]);
+                    bsOffcanvas.hide();
                 }
-            });
-        });
 
-        $(document).click(function (event) {
-            var $target = $(event.target);
-
-            if ($('#offcanvasRight').hasClass('show') && !$target.closest('#offcanvasRight').length && !$target.is('[data-bs-toggle="offcanvas"]')) {
-                var bsOffcanvas = new bootstrap.Offcanvas($('#offcanvasRight')[0]);
-                bsOffcanvas.hide();
-            }
-
-            if ($('#errorModal').hasClass('show') && !$target.closest('#errorModal').length && !$target.is('.btn-close')) {
-                var bsModal = new bootstrap.Modal($('#errorModal')[0]);
-                bsModal.hide();
-            }
-        });
-
-        $(document).ready(function () {
-            var snowEditor = new Quill("#snow-editor1", {
-                theme: "snow",
-                modules: {
-                    toolbar: [
-                        [{ font: [] }, { size: [] }],
-                        ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
-                        [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
-                    ]
-                }
-            });
-            function fillSnowEditor(data) {
-                snowEditor.setContents([]);
-
-                // snowEditor.setText(data.title + '\n');
-                snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
-            }
-
-            $('#templateSelect1').change(function () {
-                var selectedOption = $(this).find('option:selected');
-                var subject = selectedOption.data('subject') || '';
-                var body = selectedOption.data('body') || '';
-                $('#emailSubject').val(subject);
-                var formattedBody = body.replace(/\n/g, '<br>');
-
-                if (formattedBody) {
-                    fillSnowEditor({ title: subject, content: formattedBody });
+                if ($('#errorModal').hasClass('show') && !$target.closest('#errorModal').length && !$target.is('.btn-close')) {
+                    var bsModal = new bootstrap.Modal($('#errorModal')[0]);
+                    bsModal.hide();
                 }
             });
 
-            $('#templateSelect1').trigger('change');
-        });
+            $(document).ready(function () {
+                var snowEditor = new Quill("#snow-editor1", {
+                    theme: "snow",
+                    modules: {
+                        toolbar: [
+                            [{ font: [] }, { size: [] }],
+                            ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
+                            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
+                        ]
+                    }
+                });
+                function fillSnowEditor(data) {
+                    snowEditor.setContents([]);
 
-        $(document).ready(function () {
-            var snowEditor = new Quill("#snow-editor2", {
-                theme: "snow",
-                modules: {
-                    toolbar: [
-                        [{ font: [] }, { size: [] }],
-                        ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
-                        [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
-                    ]
+                    // snowEditor.setText(data.title + '\n');
+                    snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
                 }
-            });
-            function fillSnowEditor(data) {
-                snowEditor.setContents([]);
 
-                // snowEditor.setText(data.title + '\n');
-                snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
-            }
-
-            $('#templateSelect').change(function () {
-                
-                var selectedOption = $(this).find('option:selected');
-                var subject = selectedOption.data('subject') || '';
-                var body = selectedOption.data('body') || '';
-                $('#emailSubject').val(subject);
-                var formattedBody = body.replace(/\n/g, '<br>');
-
-                if (formattedBody) {
-                    fillSnowEditor({ title: subject, content: formattedBody });
-                }
-            });
-
-            $('#templateSelect').trigger('change');
-
-            $('#gmailSettingSelect').change(function () {
-                var selectedOption = $(this).find('option:selected');
-                console.log(selectedOption);
-                var email = selectedOption.data('gmail') || '';
-                var appkey = selectedOption.data('appkey') || '';
-                var clientId = selectedOption.data('settingclientid') || '';
-                var Id = selectedOption.data('settingid') || '';
-                $('#settingEmail').val(email);
-                $('#settingAppKey').val(appkey);
-                $('#settingClientId').val(clientId);
-                $('#settingId').val(Id);
-
-            });
-
-            $('#gmailSettingSelect').trigger('change');
-
-            $('#whatsAppSettingSelect').change(function () {
-                var selectedOption = $(this).find('option:selected');
-                console.log(selectedOption);
-                var accesstoken = selectedOption.data('accesstoken') || '';
-                var instanceId = selectedOption.data('instanceid') || '';
-                var clientId = selectedOption.data('whatsappclientid') || '';
-                var Id = selectedOption.data('wsettingid') || '';
-                $('#accessToken').val(accesstoken);
-                $('#instance_id').val(instanceId);
-                $('#whatsappClientId').val(clientId);
-                $('#wsettingId').val(Id);
-
-            });
-
-            $('#whatsAppSettingSelect').trigger('change');
-        });
-
-        $(document).ready(function () {
-            var snowEditor = new Quill("#snow-editor3", {
-                theme: "snow",
-                modules: {
-                    toolbar: [
-                        [{ font: [] }, { size: [] }],
-                        ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
-                        [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
-                    ]
-                }
-            });
-            function fillSnowEditor(data) {
-                snowEditor.setContents([]);
-
-                // snowEditor.setText(data.title + '\n');
-                snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
-            }
-
-                $('#templateSelect2').change(function () {
+                $('#templateSelect1').change(function () {
                     var selectedOption = $(this).find('option:selected');
                     var subject = selectedOption.data('subject') || '';
                     var body = selectedOption.data('body') || '';
-
+                    $('#emailSubject').val(subject);
                     var formattedBody = body.replace(/\n/g, '<br>');
 
                     if (formattedBody) {
@@ -1120,413 +1117,512 @@
                     }
                 });
 
-                $('#templateSelect2').trigger('change');
-        });
+                $('#templateSelect1').trigger('change');
+            });
 
-        // function sendEmail(e) {
-        //     e.preventDefault();
-        //     var formData = new FormData($('#gmailForm')[0]);
-        //     var emailArray = [];
-        //     var ajaxCalls = [];
-        //     var namesArray = [];
-        //     var successfulNames = [];
-        //     var emailNotFoundUsers = [];
-
-        //     selectedUser.forEach(function (userId) {
-        //         console.log(selectedUser);
-        //         $('#sendEmailbtn').prop('disabled', true).text('Sending...');
-
-        //         var ajaxCall = $.ajax({
-        //             url: '@Url.Action("GetUserEmail", "Members")',
-        //             type: 'GET',
-        //             data: { userId: userId },
-        //             success: function (res) {
-        //                 namesArray.push(res.displayName);
-        //                 if (res.email) {
-        //                     emailArray.push(res.email);
-        //                 } else {
-        //                     // If email is not found, add the user to the emailNotFoundUsers list
-        //                     emailNotFoundUsers.push(res.displayName);
-        //                     toastr.error(`Email not found for user: ${res.displayName}`);
-        //                 }
-        //             },
-        //             error: function (xhr, status, error) {
-        //                 var namesListError = namesArray.join(', ');
-        //                 console.error(`Error fetching email for user ${userId}:`, error);
-        //                 toastr.error(`email not found for the user`);
-        //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-        //                 selectedUser = [];
-        //             }
-        //         });
-        //         ajaxCalls.push(ajaxCall);
-        //     });
-
-        //     $.when.apply($, ajaxCalls).then(function () {
-        //         $('#sendEmailbtn').prop('disabled', true).text('Sending...');
-
-        //         var rawHtml = $('#snow-editor2').html();
-        //         var parser = new DOMParser();
-        //         var doc = parser.parseFromString(rawHtml, 'text/html');
-
-        //         // Remove all <input> elements from the HTML
-        //         var inputs = doc.querySelectorAll('input');
-        //         inputs.forEach(input => input.remove());
-
-        //         // Get the cleaned HTML
-        //         var emailBodyHtml = doc.body.innerHTML;
-
-        //         // var emailBodyHtml = $('#snow-editor2').html();
-
-        //         var selectedOption = $("#gmailSettingSelect option:selected");
-        //         var displayName = selectedOption.text(); 
-        //         formData.append("setting.DisplayName", displayName);
-        //         formData.append('emailSubject', $('#emailSubject').val());
-        //         formData.append('emailBody', emailBodyHtml); 
-        //         formData.append('emails', JSON.stringify(emailArray));
-        //         formData.append('names', JSON.stringify(namesArray));
-        //         formData.append("settingEmail", $("#settingEmail").val().trim());
-        //         formData.append("settingAppKey", $("#settingAppKey").val());
-        //         // formData.append("setting.DisplayName", $("#settingDisplayName").val());
-        //         formData.append("settingClientId", $("#settingClientId").val());
-        //         formData.append('userIds', JSON.stringify(selectedUser)); 
-
-        //         $.ajax({
-        //             url: '@Url.Action("SendMail", "Email")',
-        //             type: 'POST',
-        //             data: formData,
-        //             contentType: false,
-        //             processData: false,
-        //             success: function (response) {
-        //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-        //                 successfulNames = response.sentTo ? response.sentTo.split(', ') : [];
-        //                 var namesList = successfulNames.join(', ');
-        //                 alreadySentNames = response.alreadySent ? response.alreadySent.split(', ') : [];
-        //                 var alreadyNamesList = alreadySentNames.join(', ');
-        //                 $("#divGmailMessage").show();
-        //                 if(namesList != null){
-        //                     $("#divGmailMessage").html(`Emails sent successfully to: ${namesList}`);
-        //                 }
-        //                  if(alreadyNamesList != null){
-        //                     $("#divGmailMessage").html(`Emails Already sent to: ${alreadyNamesList}`);
-        //                 }
-        //                 console.log('Emails sent successfully:', response);
-        //                 if (response.sentTo != null) {
-        //                     toastr.success(`Emails sent successfully`);
-        //                     $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-        //                     selectedUser = [];
-        //                 }
-        //                 if (response.status == "Failed") {
-        //                     toastr.error(`Error occurred while sending email`);
-        //                 }
-        //             },
-        //             error: function (xhr, status, error) {
-        //                 console.error('Error sending emails:', error);
-        //                 toastr.error(`Error sending emails`);
-        //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-        //                 selectedUser = [];
-        //             }
-        //         });
-        //     });
-        // }
-
-            function sendEmail(e) {
-                e.preventDefault();
-                var formData = new FormData($('#gmailForm')[0]);
-                var userDetailsArray = []; 
-                var ajaxCalls = [];
-                var successfulNames = [];
-                var emailNotFoundUsers = [];
-
-                selectedUser.forEach(function (userId) {
-                    $('#sendEmailbtn').prop('disabled', true).text('Sending...');
-
-                    var ajaxCall = $.ajax({
-                        url: '@Url.Action("GetUserEmail", "Members")',
-                        type: 'GET',
-                        data: { userId: userId },
-                        success: function (res) {
-                            if (res.email && userId !== "on") { 
-                                userDetailsArray.push({
-                                    userId: userId,
-                                    email: res.email,
-                                    name: res.displayName
-                                });
-                            } else if (userId === "on") {
-                                console.log("Skipping invalid userId: 'on'");
-                            } else {
-                                emailNotFoundUsers.push(res.displayName);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-                            selectedUser = [];
-                        }
-                    });
-                    ajaxCalls.push(ajaxCall);
+            $(document).ready(function () {
+                var snowEditor = new Quill("#snow-editor2", {
+                    theme: "snow",
+                    modules: {
+                        toolbar: [
+                            [{ font: [] }, { size: [] }],
+                            ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
+                            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
+                        ]
+                    }
                 });
+                function fillSnowEditor(data) {
+                    snowEditor.setContents([]);
 
-                $.when.apply($, ajaxCalls).then(function () {
-                    $('#sendEmailbtn').prop('disabled', true).text('Sending...');
-
-                     if (emailNotFoundUsers.length > 0) {
-                            let notFoundMessage = `Email not found for: ${emailNotFoundUsers.join(', ')}`;
-                            toastr.error(notFoundMessage);
-                       }
-
-                    var rawHtml = $('#snow-editor2').html();
-                    var parser = new DOMParser();
-                    var doc = parser.parseFromString(rawHtml, 'text/html');
-
-                    var inputs = doc.querySelectorAll('input');
-                    inputs.forEach(input => input.remove());
-
-                    var emailBodyHtml = doc.body.innerHTML;
-
-                    var selectedOption = $("#gmailSettingSelect option:selected");
-                    var displayName = selectedOption.text();
-                    formData.append("setting.DisplayName", displayName);
-                    formData.append('emailSubject', $('#emailSubject').val());
-                    formData.append('emailBody', emailBodyHtml);
-                    formData.append("settingEmail", $("#settingEmail").val().trim());
-                    formData.append("settingAppKey", $("#settingAppKey").val());
-                    formData.append("settingClientId", $("#settingClientId").val());
-
-                    formData.append('userDetails', JSON.stringify(userDetailsArray));
-
-                    $.ajax({
-                        url: '@Url.Action("SendMail", "Email")',
-                        type: 'POST',
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        success: function (response) {
-                            $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-                            successfulNames = response.sentTo ? response.sentTo.split(', ') : [];
-                            var namesList = successfulNames.join(', ');
-                            alreadySentNames = response.alreadySent ? response.alreadySent.split(', ') : [];
-                            var alreadyNamesList = alreadySentNames.join(', ');
-                            $("#divGmailMessage").show();
-                            if (namesList != null) {
-                                $("#divGmailMessage").html(`Emails sent successfully to: ${namesList}`);
-                            }
-                            if (alreadyNamesList != null) {
-                                $("#divGmailMessage").html(`Emails Already sent to: ${alreadyNamesList}`);
-                            }
-                            console.log('Emails sent successfully:', response);
-                            if (response.sentTo != null) {
-                                toastr.success(`Emails sent successfully`);
-                                $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-                                selectedUser = [];
-                            }
-                            if (response.status == "Failed") {
-                                toastr.error(`Error occurred while sending email`);
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.error('Error sending emails:', error);
-                            toastr.error(`Error sending emails`);
-                            $('#sendEmailbtn').prop('disabled', false).text('Send Email');
-                            selectedUser = [];
-                        }
-                    });
-                });
-            }
-
-        function cleanQuillHtml(html) {
-            var tempElement = $('<div></div>').html(html);
-
-            // Remove the outer div with class 'ql-editor'
-            tempElement.find('div.ql-editor').replaceWith(function () {
-                return $(this).html();
-            });
-
-            // Remove the unwanted divs with class 'ql-tooltip ql-hidden'
-            tempElement.find('div.ql-tooltip.ql-hidden').remove();
-
-            // Remove unnecessary <br> tags and empty elements
-            tempElement.find('br').filter(function () {
-                return !$(this).text().trim();
-            }).remove();
-
-            tempElement.find('*').filter(function () {
-                return !$(this).text().trim() && $(this).children().length === 0;
-            }).remove();
-
-            // Process <p> tags to add <br> between paragraphs and remove other tags
-            tempElement.find('p').each(function () {
-                $(this).replaceWith($(this).html() + "<br><br>");
-            });
-
-            // Process <ul> and <li> tags to replace them with HTML equivalents
-            tempElement.find('ul').each(function () {
-                $(this).replaceWith('<ul>' + $(this).html() + '</ul>');
-            });
-
-            tempElement.find('li').each(function () {
-                $(this).replaceWith('<li>' + $(this).html() + '</li>');
-            });
-
-            // Add <br> for any line breaks that are inside the content
-            tempElement.find('*').contents().filter(function () {
-                return this.nodeType === 3 && this.nodeValue.match(/\n/);
-            }).replaceWith(function () {
-                return $(this).text().replace(/\n/g, '<br>');
-            });
-
-            // Get the cleaned HTML and replace tags with ASCII encoding references
-            var cleanedHtml = tempElement.html().replace(/\s+/g, ' ').trim();
-
-            // Replace <br> tags with %0A (newline)
-            var encodedText = cleanedHtml.replace(/<br\s*\/?>/gi, '%0A');
-
-            // Replace spaces with %20
-            encodedText = encodedText.replace(/ /g, '%20');
-
-            // Replace double quotes with %22
-            encodedText = encodedText.replace(/"/g, '%22');
-
-            // Replace apostrophes with %27
-            encodedText = encodedText.replace(/'/g, '%27');
-
-            return encodedText;
-
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('sendWhatsappMsgbtn').addEventListener('click', async function (e) {
-                e.preventDefault();
-                $('#sendWhatsappMsgbtn').prop('disabled', true).text('Sending...');
-
-                var messageTemplate = $('#snow-editor3').get(0).innerText.trim();
-                messageTemplate = messageTemplate.replace(/\n{2,}/g, '\n\n');
-
-                if (!messageTemplate) {
-                    alert("Please enter a message.");
-                    $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
-                    return;
+                    // snowEditor.setText(data.title + '\n');
+                    snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
                 }
 
-                var selectedMembers = $('.memberCheckbox:checked').map(function () {
-                    return $(this).val();
-                }).get();
+                $('#templateSelect').change(function () {
 
-                var phoneNumbers = [];
-                var messages = [];
+                    var selectedOption = $(this).find('option:selected');
+                    var subject = selectedOption.data('subject') || '';
+                    var body = selectedOption.data('body') || '';
+                    $('#emailSubject').val(subject);
+                    var formattedBody = body.replace(/\n/g, '<br>');
 
-                // Fetch phone numbers for selected members and create personalized messages
-                var ajaxCalls = selectedMembers.map(async (userId) => {
-                    try {
-                        let res = await fetch(`@Url.Action("GetUserNumber", "Members")?userId=${userId}`);
-                        if (!res.ok) throw new Error(`Error fetching phone number for user ${userId}`);
-                        let data = await res.json();
-                        if (data && data.preferredContactNumber) {
-                            let personalizedMessage = messageTemplate.replace("{Your Name}", data.displayName);
-                            phoneNumbers.push(data.preferredContactNumber);
-                            messages.push(personalizedMessage);
-                        }
-                    } catch (error) {
-                        console.error(`Error fetching phone number for user ${userId}:`, error);
+                    if (formattedBody) {
+                        fillSnowEditor({ title: subject, content: formattedBody });
                     }
                 });
 
-                await Promise.all(ajaxCalls);
+                $('#templateSelect').trigger('change');
 
-                if (phoneNumbers.length === 0) {
-                    alert("No phone numbers available for selected members.");
-                    $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
-                    return;
+                $('#gmailSettingSelect').change(function () {
+                    var selectedOption = $(this).find('option:selected');
+                    console.log(selectedOption);
+                    var email = selectedOption.data('gmail') || '';
+                    var appkey = selectedOption.data('appkey') || '';
+                    var clientId = selectedOption.data('settingclientid') || '';
+                    var Id = selectedOption.data('settingid') || '';
+                    $('#settingEmail').val(email);
+                    $('#settingAppKey').val(appkey);
+                    $('#settingClientId').val(clientId);
+                    $('#settingId').val(Id);
+
+                });
+
+                $('#gmailSettingSelect').trigger('change');
+
+                $('#whatsAppSettingSelect').change(function () {
+                    var selectedOption = $(this).find('option:selected');
+                    console.log(selectedOption);
+                    var accesstoken = selectedOption.data('accesstoken') || '';
+                    var instanceId = selectedOption.data('instanceid') || '';
+                    var clientId = selectedOption.data('whatsappclientid') || '';
+                    var Id = selectedOption.data('wsettingid') || '';
+                    $('#accessToken').val(accesstoken);
+                    $('#instance_id').val(instanceId);
+                    $('#whatsappClientId').val(clientId);
+                    $('#wsettingId').val(Id);
+
+                });
+
+                $('#whatsAppSettingSelect').trigger('change');
+            });
+
+            $(document).ready(function () {
+                var snowEditor = new Quill("#snow-editor3", {
+                    theme: "snow",
+                    modules: {
+                        toolbar: [
+                            [{ font: [] }, { size: [] }],
+                            ["bold", "italic", "underline", "strike", { color: [] }, { background: [] }, "code-block"],
+                            [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }, { align: [] }],
+                        ]
+                    }
+                });
+                function fillSnowEditor(data) {
+                    snowEditor.setContents([]);
+
+                    // snowEditor.setText(data.title + '\n');
+                    snowEditor.clipboard.dangerouslyPasteHTML(snowEditor.getLength(), data.content);
                 }
 
-                var fileSelect = document.getElementById('attachments');
-                var fileUrl = fileSelect.value;
-                var fileName = fileSelect.options[fileSelect.selectedIndex].text;
+                    $('#templateSelect2').change(function () {
+                        var selectedOption = $(this).find('option:selected');
+                        var subject = selectedOption.data('subject') || '';
+                        var body = selectedOption.data('body') || '';
 
-                if (!fileUrl || fileUrl === "") {
-                    fileUrl = null;
-                    fileName = null;
+                        var formattedBody = body.replace(/\n/g, '<br>');
+
+                        if (formattedBody) {
+                            fillSnowEditor({ title: subject, content: formattedBody });
+                        }
+                    });
+
+                    $('#templateSelect2').trigger('change');
+            });
+
+            // function sendEmail(e) {
+            //     e.preventDefault();
+            //     var formData = new FormData($('#gmailForm')[0]);
+            //     var emailArray = [];
+            //     var ajaxCalls = [];
+            //     var namesArray = [];
+            //     var successfulNames = [];
+            //     var emailNotFoundUsers = [];
+
+            //     selectedUser.forEach(function (userId) {
+            //         console.log(selectedUser);
+            //         $('#sendEmailbtn').prop('disabled', true).text('Sending...');
+
+            //         var ajaxCall = $.ajax({
+            //             url: '@Url.Action("GetUserEmail", "Members")',
+            //             type: 'GET',
+            //             data: { userId: userId },
+            //             success: function (res) {
+            //                 namesArray.push(res.displayName);
+            //                 if (res.email) {
+            //                     emailArray.push(res.email);
+            //                 } else {
+            //                     // If email is not found, add the user to the emailNotFoundUsers list
+            //                     emailNotFoundUsers.push(res.displayName);
+            //                     toastr.error(`Email not found for user: ${res.displayName}`);
+            //                 }
+            //             },
+            //             error: function (xhr, status, error) {
+            //                 var namesListError = namesArray.join(', ');
+            //                 console.error(`Error fetching email for user ${userId}:`, error);
+            //                 toastr.error(`email not found for the user`);
+            //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+            //                 selectedUser = [];
+            //             }
+            //         });
+            //         ajaxCalls.push(ajaxCall);
+            //     });
+
+            //     $.when.apply($, ajaxCalls).then(function () {
+            //         $('#sendEmailbtn').prop('disabled', true).text('Sending...');
+
+            //         var rawHtml = $('#snow-editor2').html();
+            //         var parser = new DOMParser();
+            //         var doc = parser.parseFromString(rawHtml, 'text/html');
+
+            //         // Remove all <input> elements from the HTML
+            //         var inputs = doc.querySelectorAll('input');
+            //         inputs.forEach(input => input.remove());
+
+            //         // Get the cleaned HTML
+            //         var emailBodyHtml = doc.body.innerHTML;
+
+            //         // var emailBodyHtml = $('#snow-editor2').html();
+
+            //         var selectedOption = $("#gmailSettingSelect option:selected");
+            //         var displayName = selectedOption.text();
+            //         formData.append("setting.DisplayName", displayName);
+            //         formData.append('emailSubject', $('#emailSubject').val());
+            //         formData.append('emailBody', emailBodyHtml);
+            //         formData.append('emails', JSON.stringify(emailArray));
+            //         formData.append('names', JSON.stringify(namesArray));
+            //         formData.append("settingEmail", $("#settingEmail").val().trim());
+            //         formData.append("settingAppKey", $("#settingAppKey").val());
+            //         // formData.append("setting.DisplayName", $("#settingDisplayName").val());
+            //         formData.append("settingClientId", $("#settingClientId").val());
+            //         formData.append('userIds', JSON.stringify(selectedUser));
+
+            //         $.ajax({
+            //             url: '@Url.Action("SendMail", "Email")',
+            //             type: 'POST',
+            //             data: formData,
+            //             contentType: false,
+            //             processData: false,
+            //             success: function (response) {
+            //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+            //                 successfulNames = response.sentTo ? response.sentTo.split(', ') : [];
+            //                 var namesList = successfulNames.join(', ');
+            //                 alreadySentNames = response.alreadySent ? response.alreadySent.split(', ') : [];
+            //                 var alreadyNamesList = alreadySentNames.join(', ');
+            //                 $("#divGmailMessage").show();
+            //                 if(namesList != null){
+            //                     $("#divGmailMessage").html(`Emails sent successfully to: ${namesList}`);
+            //                 }
+            //                  if(alreadyNamesList != null){
+            //                     $("#divGmailMessage").html(`Emails Already sent to: ${alreadyNamesList}`);
+            //                 }
+            //                 console.log('Emails sent successfully:', response);
+            //                 if (response.sentTo != null) {
+            //                     toastr.success(`Emails sent successfully`);
+            //                     $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+            //                     selectedUser = [];
+            //                 }
+            //                 if (response.status == "Failed") {
+            //                     toastr.error(`Error occurred while sending email`);
+            //                 }
+            //             },
+            //             error: function (xhr, status, error) {
+            //                 console.error('Error sending emails:', error);
+            //                 toastr.error(`Error sending emails`);
+            //                 $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+            //                 selectedUser = [];
+            //             }
+            //         });
+            //     });
+            // }
+
+                function sendEmail(e) {
+                    e.preventDefault();
+                    var formData = new FormData($('#gmailForm')[0]);
+                    var userDetailsArray = [];
+                    var ajaxCalls = [];
+                    var successfulNames = [];
+                    var emailNotFoundUsers = [];
+
+                    selectedUser.forEach(function (userId) {
+                        $('#sendEmailbtn').prop('disabled', true).text('Sending...');
+
+                        var ajaxCall = $.ajax({
+                            url: '@Url.Action("GetUserEmail", "Members")',
+                            type: 'GET',
+                            data: { userId: userId },
+                            success: function (res) {
+                                if (res.email && userId !== "on") {
+                                    userDetailsArray.push({
+                                        userId: userId,
+                                        email: res.email,
+                                        name: res.displayName
+                                    });
+                                } else if (userId === "on") {
+                                    console.log("Skipping invalid userId: 'on'");
+                                } else {
+                                    emailNotFoundUsers.push(res.displayName);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+                                selectedUser = [];
+                            }
+                        });
+                        ajaxCalls.push(ajaxCall);
+                    });
+
+                    $.when.apply($, ajaxCalls).then(function () {
+                        $('#sendEmailbtn').prop('disabled', true).text('Sending...');
+
+                         if (emailNotFoundUsers.length > 0) {
+                                let notFoundMessage = `Email not found for: ${emailNotFoundUsers.join(', ')}`;
+                                toastr.error(notFoundMessage);
+                           }
+
+                        var rawHtml = $('#snow-editor2').html();
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(rawHtml, 'text/html');
+
+                        var inputs = doc.querySelectorAll('input');
+                        inputs.forEach(input => input.remove());
+
+                        var emailBodyHtml = doc.body.innerHTML;
+
+                        var selectedOption = $("#gmailSettingSelect option:selected");
+                        var displayName = selectedOption.text();
+                        formData.append("setting.DisplayName", displayName);
+                        formData.append('emailSubject', $('#emailSubject').val());
+                        formData.append('emailBody', emailBodyHtml);
+                        formData.append("settingEmail", $("#settingEmail").val().trim());
+                        formData.append("settingAppKey", $("#settingAppKey").val());
+                        formData.append("settingClientId", $("#settingClientId").val());
+
+                        formData.append('userDetails', JSON.stringify(userDetailsArray));
+
+                        $.ajax({
+                            url: '@Url.Action("SendMail", "Email")',
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+                                successfulNames = response.sentTo ? response.sentTo.split(', ') : [];
+                                var namesList = successfulNames.join(', ');
+                                alreadySentNames = response.alreadySent ? response.alreadySent.split(', ') : [];
+                                var alreadyNamesList = alreadySentNames.join(', ');
+                                $("#divGmailMessage").show();
+                                if (namesList != null) {
+                                    $("#divGmailMessage").html(`Emails sent successfully to: ${namesList}`);
+                                }
+                                if (alreadyNamesList != null) {
+                                    $("#divGmailMessage").html(`Emails Already sent to: ${alreadyNamesList}`);
+                                }
+                                console.log('Emails sent successfully:', response);
+                                if (response.sentTo != null) {
+                                    toastr.success(`Emails sent successfully`);
+                                    $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+                                    selectedUser = [];
+                                }
+                                if (response.status == "Failed") {
+                                    toastr.error(`Error occurred while sending email`);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error sending emails:', error);
+                                toastr.error(`Error sending emails`);
+                                $('#sendEmailbtn').prop('disabled', false).text('Send Email');
+                                selectedUser = [];
+                            }
+                        });
+                    });
                 }
 
-                try {
-                    const instanceId = document.getElementById('instance_id').value;
-                    const accessToken = document.getElementById('accessToken').value;
+            function cleanQuillHtml(html) {
+                var tempElement = $('<div></div>').html(html);
 
-                    if (!instanceId || !accessToken) {
-                        alert("Please provide both instance ID and access token.");
+                // Remove the outer div with class 'ql-editor'
+                tempElement.find('div.ql-editor').replaceWith(function () {
+                    return $(this).html();
+                });
+
+                // Remove the unwanted divs with class 'ql-tooltip ql-hidden'
+                tempElement.find('div.ql-tooltip.ql-hidden').remove();
+
+                // Remove unnecessary <br> tags and empty elements
+                tempElement.find('br').filter(function () {
+                    return !$(this).text().trim();
+                }).remove();
+
+                tempElement.find('*').filter(function () {
+                    return !$(this).text().trim() && $(this).children().length === 0;
+                }).remove();
+
+                // Process <p> tags to add <br> between paragraphs and remove other tags
+                tempElement.find('p').each(function () {
+                    $(this).replaceWith($(this).html() + "<br><br>");
+                });
+
+                // Process <ul> and <li> tags to replace them with HTML equivalents
+                tempElement.find('ul').each(function () {
+                    $(this).replaceWith('<ul>' + $(this).html() + '</ul>');
+                });
+
+                tempElement.find('li').each(function () {
+                    $(this).replaceWith('<li>' + $(this).html() + '</li>');
+                });
+
+                // Add <br> for any line breaks that are inside the content
+                tempElement.find('*').contents().filter(function () {
+                    return this.nodeType === 3 && this.nodeValue.match(/\n/);
+                }).replaceWith(function () {
+                    return $(this).text().replace(/\n/g, '<br>');
+                });
+
+                // Get the cleaned HTML and replace tags with ASCII encoding references
+                var cleanedHtml = tempElement.html().replace(/\s+/g, ' ').trim();
+
+                // Replace <br> tags with %0A (newline)
+                var encodedText = cleanedHtml.replace(/<br\s*\/?>/gi, '%0A');
+
+                // Replace spaces with %20
+                encodedText = encodedText.replace(/ /g, '%20');
+
+                // Replace double quotes with %22
+                encodedText = encodedText.replace(/"/g, '%22');
+
+                // Replace apostrophes with %27
+                encodedText = encodedText.replace(/'/g, '%27');
+
+                return encodedText;
+
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('sendWhatsappMsgbtn').addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    $('#sendWhatsappMsgbtn').prop('disabled', true).text('Sending...');
+
+                    var messageTemplate = $('#snow-editor3').get(0).innerText.trim();
+                    messageTemplate = messageTemplate.replace(/\n{2,}/g, '\n\n');
+
+                    if (!messageTemplate) {
+                        alert("Please enter a message.");
                         $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
                         return;
                     }
 
-                    for (let i = 0; i < phoneNumbers.length; i++) {
-                        let phoneNumber = phoneNumbers[i];
-                        let message = messages[i];
+                    var selectedMembers = $('.memberCheckbox:checked').map(function () {
+                        return $(this).val();
+                    }).get();
 
-                        let requestBody = {
-                            number: phoneNumber,
-                            message: message,
-                            mediaUrl: fileUrl,
-                            accessToken: accessToken,
-                            instanceId: instanceId
-                        };
+                    var phoneNumbers = [];
+                    var messages = [];
 
-                        let response = await fetch('/WhatsApp/SendMessage', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(requestBody)
-                        });
-                        if (response.ok) {
-                            let data = await response.json();
-                            toastr.success(`Message sent to ${phoneNumber}`);
-                        } else {
-                            let data = await response.json();
-                            toastr.error(`Failed to send message to ${phoneNumber}`);
+                    // Fetch phone numbers for selected members and create personalized messages
+                    var ajaxCalls = selectedMembers.map(async (userId) => {
+                        try {
+                            let res = await fetch(`@Url.Action("GetUserNumber", "Members")?userId=${userId}`);
+                            if (!res.ok) throw new Error(`Error fetching phone number for user ${userId}`);
+                            let data = await res.json();
+                            if (data && data.preferredContactNumber) {
+                                let personalizedMessage = messageTemplate.replace("{Your Name}", data.displayName);
+                                phoneNumbers.push(data.preferredContactNumber);
+                                messages.push(personalizedMessage);
+                            }
+                        } catch (error) {
+                            console.error(`Error fetching phone number for user ${userId}:`, error);
                         }
-                        if (!response.ok) throw new Error(`Error sending WhatsApp message to ${phoneNumber}`);
-                        let data = await response.json();
+                    });
 
-                        console.log(`WhatsApp message sent to ${phoneNumber}:`, data);
+                    await Promise.all(ajaxCalls);
+
+                    if (phoneNumbers.length === 0) {
+                        alert("No phone numbers available for selected members.");
+                        $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                        return;
                     }
 
-                    $("#divGmailMessage").html("Messages sent successfully to selected members.").show();
-                } catch (error) {
-                    console.error("Error in one of the WhatsApp requests:", error);
-                } finally {
-                    $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
-                }
-            });
-        });
+                    var fileSelect = document.getElementById('attachments');
+                    var fileUrl = fileSelect.value;
+                    var fileName = fileSelect.options[fileSelect.selectedIndex].text;
 
-        async function getUserPhoneNumber(userId) {
-            try {
-                let response = await fetch(`@Url.Action("GetUserNumber", "Members")?userId=${userId}`);
-                if (!response.ok) throw new Error("Network response was not ok");
-                let data = await response.json();
-                return { number: data.number, displayName: data.displayName };
-            } catch (error) {
-                console.error("Error fetching user phone number:", error);
-                return null;
-            }
-        }
-
-        function sendWhatsAppMessages(phoneNumbers, messages) {
-            return fetch(`@Url.Action("SendWhatsAppMessage", "Whatsapp")`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phoneNumbers: phoneNumbers, messages: messages })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Error sending WhatsApp messages");
+                    if (!fileUrl || fileUrl === "") {
+                        fileUrl = null;
+                        fileName = null;
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("WhatsApp messages sent:", data);
-                })
-                .catch(error => {
-                    console.error("Error sending WhatsApp messages:", error);
+
+                    try {
+                        const instanceId = document.getElementById('instance_id').value;
+                        const accessToken = document.getElementById('accessToken').value;
+
+                        if (!instanceId || !accessToken) {
+                            alert("Please provide both instance ID and access token.");
+                            $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                            return;
+                        }
+
+                        for (let i = 0; i < phoneNumbers.length; i++) {
+                            let phoneNumber = phoneNumbers[i];
+                            let message = messages[i];
+
+                            let requestBody = {
+                                number: phoneNumber,
+                                message: message,
+                                mediaUrl: fileUrl,
+                                accessToken: accessToken,
+                                instanceId: instanceId
+                            };
+
+                            let response = await fetch('/WhatsApp/SendMessage', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(requestBody)
+                            });
+                            if (response.ok) {
+                                let data = await response.json();
+                                toastr.success(`Message sent to ${phoneNumber}`);
+                            } else {
+                                let data = await response.json();
+                                toastr.error(`Failed to send message to ${phoneNumber}`);
+                            }
+                            if (!response.ok) throw new Error(`Error sending WhatsApp message to ${phoneNumber}`);
+                            let data = await response.json();
+
+                            console.log(`WhatsApp message sent to ${phoneNumber}:`, data);
+                        }
+
+                        $("#divGmailMessage").html("Messages sent successfully to selected members.").show();
+                    } catch (error) {
+                        console.error("Error in one of the WhatsApp requests:", error);
+                    } finally {
+                        $('#sendWhatsappMsgbtn').prop('disabled', false).text('Send Message');
+                    }
                 });
-        }
-    </script>
-}
+            });
+
+            async function getUserPhoneNumber(userId) {
+                try {
+                    let response = await fetch(`@Url.Action("GetUserNumber", "Members")?userId=${userId}`);
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    let data = await response.json();
+                    return { number: data.number, displayName: data.displayName };
+                } catch (error) {
+                    console.error("Error fetching user phone number:", error);
+                    return null;
+                }
+            }
+
+            function sendWhatsAppMessages(phoneNumbers, messages) {
+                return fetch(`@Url.Action("SendWhatsAppMessage", "Whatsapp")`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phoneNumbers: phoneNumbers, messages: messages })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Error sending WhatsApp messages");
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("WhatsApp messages sent:", data);
+                    })
+                    .catch(error => {
+                        console.error("Error sending WhatsApp messages:", error);
+                    });
+            }
+        </script>
+    }

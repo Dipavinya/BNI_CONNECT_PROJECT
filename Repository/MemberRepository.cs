@@ -38,24 +38,9 @@ namespace BniConnect.Repository
             AND (@MemberCity IS NULL OR city LIKE '%' + @MemberCity + '%')
             AND (@MemberPrimaryCategory IS NULL OR Category = @MemberPrimaryCategory)
             AND(@MemberSecondaryCategory IS NULL OR member_subcategory = @MemberSecondaryCategory)
-        ORDER BY date_created DESC;
+        ORDER BY date_created DESC
     ";
-        //OFFSET @Offset ROWS FETCH NEXT @PerPage ROWS ONLY;
-
-            //return await connection.QueryAsync<Member>(sql, new
-            //{
-
-            //    model.MemberKeywords,
-            //    model.MemberFirstName,
-            //    model.MemberLastName,
-            //    model.MemberCompanyName,
-            //    model.MemberCountryId,
-            //    model.MemberCity,
-            //    model.MemberPrimaryCategory,
-            //    model.MemberSecondaryCategory,
-            //    Offset = (model.CurrentPage - 1) * 25,
-            //    PerPage = 25
-            //});
+      
 
             var members = await connection.QueryAsync<Member>(sql, new
             {
@@ -68,8 +53,7 @@ namespace BniConnect.Repository
                 model.MemberCity,
                 model.MemberPrimaryCategory,
                 model.MemberSecondaryCategory,
-                Offset = (model.CurrentPage - 1) * 25,
-                PerPage = 25
+               
             });
             return members.ToList();
         }

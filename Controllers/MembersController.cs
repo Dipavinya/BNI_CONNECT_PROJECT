@@ -17,6 +17,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using BniConnect.Repository;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BniConnect.Controllers
 {
@@ -92,51 +93,17 @@ namespace BniConnect.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 var clientId = user.Id;
 
+
                 // Call your DB instead of external API
                 //var members = await memberRepository.SearchMembersAsync(model);
                 List<Member> members = await memberRepository.SearchMembersAsync(model);
+                int totalRecords = members.Count();
 
-                // Fetch other related data (optional UI-related)
-                //var defaultTemplate = await _mailSettings.GetLastUsedMailTemplateByClientId(clientId);
-                //var availableTemplates = await _templateService.GetTemplatesByClient(clientId);
-                //var mailSetting = await _mailSettings.GetMailSettingsByClientId(clientId);
-                //var whatsAppSetting = await _whisatAppSettingService.GetWhatsAppSettingsByClientId(clientId);
-                //var files = await GetFiles();
-                //var countrys = await _parserService.GetCountries();
-                //var category = await _categoryService.Getcategorys();
-                //var subCategories = await _categoryService.GetSubCategoryByCatId(Convert.ToInt32(model.MemberPrimaryCategoryId));
+               
+                //var totalpage = model.TotalPages + model.CurrentPage;
 
-                var totalpage = model.TotalPages + model.CurrentPage;
-
-                //var searchParams = new MemberSearchModel
-                //{
-                //    MemberKeywords = model.MemberKeywords,
-                //    MemberFirstName = model.MemberFirstName,
-                //    MemberLastName = model.MemberLastName,
-                //    MemberCity = model.MemberCity,
-                //    MemberCompanyName = model.MemberCompanyName,
-                //    MemberCountryId = model.MemberCountryId,
-                //    MemberPrimaryCategory = model.MemberPrimaryCategory,
-                //    MemberSecondaryCategory = model.MemberSecondaryCategory,
-                //    MemberState = model.MemberState,
-                //    CurrentPage = model.CurrentPage,
-                //    TotalPages = totalpage
-                //};
-
-                //var viewModel = new ShowTableViewModel
-                //{
-                //    Members = members,
-                //    LastTemplateId = defaultTemplate,
-                //    MailSettings = mailSetting,
-                //    AvailableTemplates = availableTemplates,
-                //    WhatsAppSetting = whatsAppSetting,
-                //    Files = files,
-                //    SearchParams = searchParams,
-                //    CountryMst = countrys,
-                //    CategoryMst = category,
-                //    SubCategoryMst = subCategories
-                //};
-                return Json(new { members = members ,currentpage=model.CurrentPage,totalpage=totalpage});
+               
+                return Json(new { members = members, totalCount = totalRecords });
                 //return View("Index", viewModel);
             }
             catch (Exception ex)

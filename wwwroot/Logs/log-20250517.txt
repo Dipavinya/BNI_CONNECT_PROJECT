@@ -1,0 +1,168 @@
+2025-05-17 10:52:57.629 +05:30 [INF] Test log message for "2025-05-17T05:22:57.6283779Z"
+2025-05-17 10:52:57.629 +05:30 [INF] Test log message for "2025-05-17T05:22:57.6283779Z"
+2025-05-17 10:57:16.680 +05:30 [INF] Test log message for "2025-05-17T05:27:16.6792867Z"
+2025-05-17 10:57:16.680 +05:30 [INF] Test log message for "2025-05-17T05:27:16.6792867Z"
+2025-05-17 10:59:20.524 +05:30 [INF] Test log message for "2025-05-17T05:29:20.5228176Z"
+2025-05-17 10:59:20.524 +05:30 [INF] Test log message for "2025-05-17T05:29:20.5228176Z"
+2025-05-17 11:01:07.078 +05:30 [INF] Test log message for "2025-05-17T05:31:07.0771749Z"
+2025-05-17 11:01:07.078 +05:30 [INF] Test log message for "2025-05-17T05:31:07.0771749Z"
+2025-05-17 11:03:13.843 +05:30 [INF] Test log message for "2025-05-17T05:33:13.8430142Z"
+2025-05-17 11:03:13.843 +05:30 [INF] Test log message for "2025-05-17T05:33:13.8430142Z"
+2025-05-17 11:03:23.463 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:2eee7ee8-2430-4ef4-9440-c7493502530c
+Error Number:102,State:1,Class:15
+2025-05-17 11:03:23.463 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:2eee7ee8-2430-4ef4-9440-c7493502530c
+Error Number:102,State:1,Class:15
+2025-05-17 11:03:32.790 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:2eee7ee8-2430-4ef4-9440-c7493502530c
+Error Number:102,State:1,Class:15
+2025-05-17 11:03:32.790 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:2eee7ee8-2430-4ef4-9440-c7493502530c
+Error Number:102,State:1,Class:15
+2025-05-17 11:05:07.273 +05:30 [INF] Test log message for "2025-05-17T05:35:07.2723168Z"
+2025-05-17 11:05:07.273 +05:30 [INF] Test log message for "2025-05-17T05:35:07.2723168Z"
+2025-05-17 11:05:27.992 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:dfb34b3b-5e3c-4275-be05-6e8e54f969c8
+Error Number:102,State:1,Class:15
+2025-05-17 11:05:27.992 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OFFSET'.
+Invalid usage of the option NEXT in the FETCH statement.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 60
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 97
+ClientConnectionId:dfb34b3b-5e3c-4275-be05-6e8e54f969c8
+Error Number:102,State:1,Class:15
+2025-05-17 11:08:41.181 +05:30 [INF] Test log message for "2025-05-17T05:38:41.1803800Z"
+2025-05-17 11:08:41.181 +05:30 [INF] Test log message for "2025-05-17T05:38:41.1803800Z"
+2025-05-17 11:10:55.664 +05:30 [INF] Test log message for "2025-05-17T05:40:55.6633401Z"
+2025-05-17 11:10:55.664 +05:30 [INF] Test log message for "2025-05-17T05:40:55.6633401Z"
+2025-05-17 11:14:10.865 +05:30 [INF] Test log message for "2025-05-17T05:44:10.8643355Z"
+2025-05-17 11:14:10.865 +05:30 [INF] Test log message for "2025-05-17T05:44:10.8643355Z"
+2025-05-17 11:16:26.678 +05:30 [INF] Test log message for "2025-05-17T05:46:26.6771922Z"
+2025-05-17 11:16:26.678 +05:30 [INF] Test log message for "2025-05-17T05:46:26.6771922Z"
+2025-05-17 11:21:29.375 +05:30 [INF] Test log message for "2025-05-17T05:51:29.3743404Z"
+2025-05-17 11:21:29.375 +05:30 [INF] Test log message for "2025-05-17T05:51:29.3743404Z"
+2025-05-17 11:43:22.413 +05:30 [INF] Test log message for "2025-05-17T06:13:22.4124404Z"
+2025-05-17 11:43:22.413 +05:30 [INF] Test log message for "2025-05-17T06:13:22.4124404Z"
+2025-05-17 11:43:41.111 +05:30 [INF] Test log message for "2025-05-17T06:13:41.1106587Z"
+2025-05-17 11:43:41.111 +05:30 [INF] Test log message for "2025-05-17T06:13:41.1106587Z"
+2025-05-17 11:46:50.282 +05:30 [INF] Test log message for "2025-05-17T06:16:50.2815177Z"
+2025-05-17 11:46:50.282 +05:30 [INF] Test log message for "2025-05-17T06:16:50.2815177Z"
+2025-05-17 11:52:03.313 +05:30 [INF] Test log message for "2025-05-17T06:22:03.3128747Z"
+2025-05-17 11:52:03.313 +05:30 [INF] Test log message for "2025-05-17T06:22:03.3128747Z"
+2025-05-17 11:54:12.698 +05:30 [INF] Test log message for "2025-05-17T06:24:12.6976970Z"
+2025-05-17 11:54:12.698 +05:30 [INF] Test log message for "2025-05-17T06:24:12.6976970Z"
+2025-05-17 11:56:40.885 +05:30 [INF] Test log message for "2025-05-17T06:26:40.8847438Z"
+2025-05-17 11:56:40.885 +05:30 [INF] Test log message for "2025-05-17T06:26:40.8847438Z"
+2025-05-17 12:00:24.213 +05:30 [INF] Test log message for "2025-05-17T06:30:24.2129567Z"
+2025-05-17 12:00:24.213 +05:30 [INF] Test log message for "2025-05-17T06:30:24.2129567Z"
+2025-05-17 12:05:47.727 +05:30 [INF] Test log message for "2025-05-17T06:35:47.7260991Z"
+2025-05-17 12:05:47.727 +05:30 [INF] Test log message for "2025-05-17T06:35:47.7260991Z"
+2025-05-17 12:06:21.231 +05:30 [INF] Test log message for "2025-05-17T06:36:21.2310971Z"
+2025-05-17 12:06:21.231 +05:30 [INF] Test log message for "2025-05-17T06:36:21.2310971Z"
+2025-05-17 12:07:23.961 +05:30 [INF] Test log message for "2025-05-17T06:37:23.9607839Z"
+2025-05-17 12:07:23.961 +05:30 [INF] Test log message for "2025-05-17T06:37:23.9607839Z"
+2025-05-17 12:08:03.559 +05:30 [INF] Test log message for "2025-05-17T06:38:03.5584210Z"
+2025-05-17 12:08:03.559 +05:30 [INF] Test log message for "2025-05-17T06:38:03.5584210Z"
+2025-05-17 12:43:00.971 +05:30 [INF] Test log message for "2025-05-17T07:13:00.9708791Z"
+2025-05-17 12:43:00.971 +05:30 [INF] Test log message for "2025-05-17T07:13:00.9708791Z"
+2025-05-17 14:39:19.059 +05:30 [INF] Test log message for "2025-05-17T09:09:19.0589603Z"
+2025-05-17 14:39:19.059 +05:30 [INF] Test log message for "2025-05-17T09:09:19.0589603Z"
+2025-05-17 14:40:49.345 +05:30 [INF] Test log message for "2025-05-17T09:10:49.3443674Z"
+2025-05-17 14:40:49.345 +05:30 [INF] Test log message for "2025-05-17T09:10:49.3443674Z"
+2025-05-17 14:44:36.150 +05:30 [INF] Test log message for "2025-05-17T09:14:36.1495018Z"
+2025-05-17 14:44:36.150 +05:30 [INF] Test log message for "2025-05-17T09:14:36.1495018Z"
+2025-05-17 14:49:11.071 +05:30 [INF] Test log message for "2025-05-17T09:19:11.0704945Z"
+2025-05-17 14:49:11.071 +05:30 [INF] Test log message for "2025-05-17T09:19:11.0704945Z"
+2025-05-17 14:53:06.695 +05:30 [INF] Test log message for "2025-05-17T09:23:06.6951158Z"
+2025-05-17 14:53:06.695 +05:30 [INF] Test log message for "2025-05-17T09:23:06.6951158Z"
+2025-05-17 14:56:26.752 +05:30 [INF] Test log message for "2025-05-17T09:26:26.7517903Z"
+2025-05-17 14:56:26.752 +05:30 [INF] Test log message for "2025-05-17T09:26:26.7517903Z"
+2025-05-17 15:02:10.083 +05:30 [INF] Test log message for "2025-05-17T09:32:10.0826567Z"
+2025-05-17 15:02:10.083 +05:30 [INF] Test log message for "2025-05-17T09:32:10.0826567Z"
+2025-05-17 15:04:53.326 +05:30 [INF] Test log message for "2025-05-17T09:34:53.3253104Z"
+2025-05-17 15:04:53.326 +05:30 [INF] Test log message for "2025-05-17T09:34:53.3253104Z"
+2025-05-17 15:07:55.889 +05:30 [INF] Test log message for "2025-05-17T09:37:55.8883693Z"
+2025-05-17 15:07:55.889 +05:30 [INF] Test log message for "2025-05-17T09:37:55.8883693Z"
+2025-05-17 15:09:26.161 +05:30 [INF] Test log message for "2025-05-17T09:39:26.1606418Z"
+2025-05-17 15:09:26.161 +05:30 [INF] Test log message for "2025-05-17T09:39:26.1606418Z"
+2025-05-17 15:11:18.356 +05:30 [INF] Test log message for "2025-05-17T09:41:18.3555267Z"
+2025-05-17 15:11:18.356 +05:30 [INF] Test log message for "2025-05-17T09:41:18.3555267Z"
+2025-05-17 15:19:11.544 +05:30 [INF] Test log message for "2025-05-17T09:49:11.5431795Z"
+2025-05-17 15:19:11.544 +05:30 [INF] Test log message for "2025-05-17T09:49:11.5431795Z"
+2025-05-17 15:22:54.555 +05:30 [INF] Test log message for "2025-05-17T09:52:54.5543606Z"
+2025-05-17 15:22:54.555 +05:30 [INF] Test log message for "2025-05-17T09:52:54.5543606Z"
+2025-05-17 15:27:56.062 +05:30 [INF] Test log message for "2025-05-17T09:57:56.0611727Z"
+2025-05-17 15:27:56.062 +05:30 [INF] Test log message for "2025-05-17T09:57:56.0611727Z"
+2025-05-17 15:30:26.643 +05:30 [INF] Test log message for "2025-05-17T10:00:26.6428015Z"
+2025-05-17 15:30:26.643 +05:30 [INF] Test log message for "2025-05-17T10:00:26.6428015Z"
+2025-05-17 15:30:49.799 +05:30 [INF] Test log message for "2025-05-17T10:00:49.7985561Z"
+2025-05-17 15:30:49.799 +05:30 [INF] Test log message for "2025-05-17T10:00:49.7985561Z"

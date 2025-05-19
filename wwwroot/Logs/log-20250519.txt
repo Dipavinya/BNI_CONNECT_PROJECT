@@ -1,0 +1,98 @@
+2025-05-19 10:39:31.714 +05:30 [INF] Test log message for "2025-05-19T05:09:31.7128256Z"
+2025-05-19 10:39:31.714 +05:30 [INF] Test log message for "2025-05-19T05:09:31.7128256Z"
+2025-05-19 12:23:42.201 +05:30 [INF] Test log message for "2025-05-19T06:53:42.2001372Z"
+2025-05-19 12:23:42.201 +05:30 [INF] Test log message for "2025-05-19T06:53:42.2001372Z"
+2025-05-19 12:27:05.818 +05:30 [INF] Test log message for "2025-05-19T06:57:05.8171389Z"
+2025-05-19 12:27:05.818 +05:30 [INF] Test log message for "2025-05-19T06:57:05.8171389Z"
+2025-05-19 12:31:59.224 +05:30 [INF] Test log message for "2025-05-19T07:01:59.2234926Z"
+2025-05-19 12:31:59.224 +05:30 [INF] Test log message for "2025-05-19T07:01:59.2234926Z"
+2025-05-19 12:34:03.976 +05:30 [INF] Test log message for "2025-05-19T07:04:03.9761589Z"
+2025-05-19 12:34:03.976 +05:30 [INF] Test log message for "2025-05-19T07:04:03.9761589Z"
+2025-05-19 12:36:22.246 +05:30 [INF] Test log message for "2025-05-19T07:06:22.2459915Z"
+2025-05-19 12:36:22.246 +05:30 [INF] Test log message for "2025-05-19T07:06:22.2459915Z"
+2025-05-19 13:04:47.992 +05:30 [INF] Test log message for "2025-05-19T07:34:47.9914464Z"
+2025-05-19 13:04:47.992 +05:30 [INF] Test log message for "2025-05-19T07:34:47.9914464Z"
+2025-05-19 13:08:12.795 +05:30 [INF] Test log message for "2025-05-19T07:38:12.7946967Z"
+2025-05-19 13:08:12.795 +05:30 [INF] Test log message for "2025-05-19T07:38:12.7946967Z"
+2025-05-19 13:13:03.579 +05:30 [INF] Test log message for "2025-05-19T07:43:03.5791461Z"
+2025-05-19 13:13:03.579 +05:30 [INF] Test log message for "2025-05-19T07:43:03.5791461Z"
+2025-05-19 13:14:35.022 +05:30 [INF] Test log message for "2025-05-19T07:44:35.0215232Z"
+2025-05-19 13:14:35.022 +05:30 [INF] Test log message for "2025-05-19T07:44:35.0215232Z"
+2025-05-19 13:17:02.470 +05:30 [INF] Test log message for "2025-05-19T07:47:02.4692911Z"
+2025-05-19 13:17:02.470 +05:30 [INF] Test log message for "2025-05-19T07:47:02.4692911Z"
+2025-05-19 13:20:40.869 +05:30 [INF] Test log message for "2025-05-19T07:50:40.8687024Z"
+2025-05-19 13:20:40.869 +05:30 [INF] Test log message for "2025-05-19T07:50:40.8687024Z"
+2025-05-19 13:26:07.042 +05:30 [INF] Test log message for "2025-05-19T07:56:07.0412147Z"
+2025-05-19 13:26:07.042 +05:30 [INF] Test log message for "2025-05-19T07:56:07.0412147Z"
+2025-05-19 13:28:15.365 +05:30 [INF] Test log message for "2025-05-19T07:58:15.3644318Z"
+2025-05-19 13:28:15.365 +05:30 [INF] Test log message for "2025-05-19T07:58:15.3644318Z"
+2025-05-19 15:36:37.080 +05:30 [INF] Test log message for "2025-05-19T10:06:37.0793838Z"
+2025-05-19 15:36:37.080 +05:30 [INF] Test log message for "2025-05-19T10:06:37.0793838Z"
+2025-05-19 15:36:48.393 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Category'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 45
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:7ae72a86-b343-4db9-b6eb-1f2b8c0e2282
+Error Number:207,State:1,Class:16
+2025-05-19 15:36:48.393 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Category'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 45
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:7ae72a86-b343-4db9-b6eb-1f2b8c0e2282
+Error Number:207,State:1,Class:16
+2025-05-19 15:36:54.047 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Category'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 45
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:7ae72a86-b343-4db9-b6eb-1f2b8c0e2282
+Error Number:207,State:1,Class:16
+2025-05-19 15:36:54.047 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Name'.
+Invalid column name 'Category'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 434
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 45
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:7ae72a86-b343-4db9-b6eb-1f2b8c0e2282
+Error Number:207,State:1,Class:16
