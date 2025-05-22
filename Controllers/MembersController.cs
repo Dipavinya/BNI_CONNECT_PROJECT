@@ -59,8 +59,21 @@ namespace BniConnect.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
-            var clientId = user.Id;
+            if (!Request.Cookies.TryGetValue("Cookie", out var userJson))
+                {
+                    // Cookie not found, handle accordingly
+                    return Unauthorized("User cookie not found.");
+                }
+
+                // Deserialize the user data from cookie JSON
+                var userData = JsonSerializer.Deserialize<UserCookieData>(userJson);
+
+                var clientId = userData?.Client;
+
+                if (clientId == null)
+                {
+                    return Unauthorized("User ID not found in cookie.");
+                }
             var defaultTemplate = await _mailSettings.GetLastUsedMailTemplateByClientId(clientId);
             var availableTemplates = await _templateService.GetTemplatesByClient(clientId);
             var mailSetting = await _mailSettings.GetMailSettingsByClientId(clientId);
@@ -90,19 +103,56 @@ namespace BniConnect.Controllers
         {
             try
             {
-                var user = await _userManager.GetUserAsync(User);
-                var clientId = user.Id;
+                //// Retrieve the serialized user data from session
+                //var userJson = HttpContext.Session.GetString("Cookie");
 
+                //if (string.IsNullOrWhiteSpace(userJson))
+                //{
+                //    return Unauthorized("User session not found.");
+                //}
+
+                //// Deserialize the user data
+                //UserCookieData userData;
+                //try
+                //{
+                //    userData = JsonSerializer.Deserialize<UserCookieData>(userJson);
+                //}
+                //catch (JsonException)
+                //{
+                //    return Unauthorized("Invalid user session data.");
+                //}
+
+                //var clientId = userData?.Client;
+
+                //if (clientId == null)
+                //{
+                //    return Unauthorized("User ID not found in session.");
+                //}
+                if (!Request.Cookies.TryGetValue("Cookie", out var userJson))
+                {
+                    // Cookie not found, handle accordingly
+                    return Unauthorized("User cookie not found.");
+                }
+
+                // Deserialize the user data from cookie JSON
+                var userData = JsonSerializer.Deserialize<UserCookieData>(userJson);
+
+                var clientId = userData?.Client;
+
+                if (clientId == null)
+                {
+                    return Unauthorized("User ID not found in cookie.");
+                }
 
                 // Call your DB instead of external API
                 //var members = await memberRepository.SearchMembersAsync(model);
                 List<Member> members = await memberRepository.SearchMembersAsync(model);
                 int totalRecords = members.Count();
 
-               
+
                 //var totalpage = model.TotalPages + model.CurrentPage;
 
-               
+
                 return Json(new { members = members, totalCount = totalRecords });
                 //return View("Index", viewModel);
             }
@@ -112,6 +162,13 @@ namespace BniConnect.Controllers
                 ModelState.AddModelError(string.Empty, "An unexpected error occurred.");
                 return RedirectToAction("Login", "Account");
             }
+        }
+        public class UserCookieData
+        {
+            public string UserId { get; set; }
+            public string Email { get; set; }
+            public string UserName { get; set; }
+            public string Client { get; set; }
         }
 
         //[HttpPost]

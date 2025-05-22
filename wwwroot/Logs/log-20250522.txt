@@ -1,0 +1,116 @@
+2025-05-22 10:48:55.933 +05:30 [INF] Test log message for "2025-05-22T05:18:55.9328952Z"
+2025-05-22 10:48:55.933 +05:30 [INF] Test log message for "2025-05-22T05:18:55.9328952Z"
+2025-05-22 11:51:31.555 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4e97f9bsm101904625ad.156 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4e97f9bsm101904625ad.156 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 11:51:31.555 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4e97f9bsm101904625ad.156 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4e97f9bsm101904625ad.156 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 11:57:49.122 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f3651611bsm5147020a91.49 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f3651611bsm5147020a91.49 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 11:57:49.122 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f3651611bsm5147020a91.49 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-30f3651611bsm5147020a91.49 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 12:11:00.600 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4b017b0sm102637635ad.95 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4b017b0sm102637635ad.95 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 12:11:00.600 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4b017b0sm102637635ad.95 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-231d4b017b0sm102637635ad.95 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 12:31:33.601 +05:30 [INF] Test log message for "2025-05-22T07:01:33.6004281Z"
+2025-05-22 12:31:33.601 +05:30 [INF] Test log message for "2025-05-22T07:01:33.6004281Z"
+2025-05-22 12:52:09.031 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 12:52:09.031 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 13:11:01.104 +05:30 [INF] Test log message for "2025-05-22T07:41:01.1038175Z"
+2025-05-22 13:11:01.104 +05:30 [INF] Test log message for "2025-05-22T07:41:01.1038175Z"
+2025-05-22 13:11:20.819 +05:30 [INF] Test log message for "2025-05-22T07:41:20.8186813Z"
+2025-05-22 13:11:20.819 +05:30 [INF] Test log message for "2025-05-22T07:41:20.8186813Z"
+2025-05-22 13:13:08.892 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 13:13:08.892 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 13:13:31.464 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 13:13:31.464 +05:30 [ERR] Error sending WhatsApp message via Twilio
+Twilio.Exceptions.ApiException: Twilio could not find a Channel with the specified From address
+   at Twilio.Clients.TwilioRestClient.ProcessResponse(Response response)
+   at Twilio.Clients.TwilioRestClient.RequestAsync(Request request)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(CreateMessageOptions options, ITwilioRestClient client)
+   at Twilio.Rest.Api.V2010.Account.MessageResource.CreateAsync(PhoneNumber to, String pathAccountSid, PhoneNumber from, String messagingServiceSid, String body, List`1 mediaUrl, String contentSid, Uri statusCallback, String applicationSid, Nullable`1 maxPrice, Nullable`1 provideFeedback, Nullable`1 attempt, Nullable`1 validityPeriod, Nullable`1 forceDelivery, ContentRetentionEnum contentRetention, AddressRetentionEnum addressRetention, Nullable`1 smartEncoded, List`1 persistentAction, TrafficTypeEnum trafficType, Nullable`1 shortenUrls, ScheduleTypeEnum scheduleType, Nullable`1 sendAt, Nullable`1 sendAsMms, String contentVariables, RiskCheckEnum riskCheck, ITwilioRestClient client)
+   at WhatsappController.SendMessage(WhatsAppMessageRequest request)
+2025-05-22 14:59:50.714 +05:30 [INF] Test log message for "2025-05-22T09:29:50.7132162Z"
+2025-05-22 14:59:50.714 +05:30 [INF] Test log message for "2025-05-22T09:29:50.7132162Z"
+2025-05-22 15:00:59.322 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a98a338bsm11278585b3a.175 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a98a338bsm11278585b3a.175 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47
+2025-05-22 15:00:59.322 +05:30 [ERR] Error while sending email
+MailKit.Security.AuthenticationException: 535: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a98a338bsm11278585b3a.175 - gsmtp
+ ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.8 Username and Password not accepted. For more information, go to
+5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-742a98a338bsm11278585b3a.175 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at BniConnect.Services.EmailService.SendEmail(String userEmail, String userPassword, String DisplayName, String to, String subject, String body, IFormFile attachment) in D:\dip_work\BNI_CONNECT_PROJECT\Services\EmailService.cs:line 47

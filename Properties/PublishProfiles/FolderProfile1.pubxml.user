@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\dip_work\BNI_CONNECT_PROJECT\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2025-05-20T12:57:25.9792692Z||;True|2025-05-20T18:10:21.4342756+05:30||;True|2025-05-20T17:28:29.7315739+05:30||;True|2025-05-20T16:32:02.6366815+05:30||;True|2025-05-20T15:46:44.9835668+05:30||;True|2025-05-20T15:41:54.4594707+05:30||;True|2025-05-19T19:05:22.5836737+05:30||;True|2025-05-19T17:13:49.7627206+05:30||;True|2025-05-19T17:03:40.0576974+05:30||;True|2025-05-19T17:01:02.3383854+05:30||;True|2025-05-19T15:57:32.2533844+05:30||;True|2025-05-19T15:43:40.7365235+05:30||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Text.Json;
 
 namespace BniConnect.Controllers
 {
@@ -71,24 +72,7 @@ namespace BniConnect.Controllers
                 chromeOptions.AddArgument("--start-maximized");
                 chromeOptions.AddArgument("--window-size=1920x1080");
 
-                //using (IWebDriver driver = new ChromeDriver(chromeOptions))
-                //{
-                //    driver.Navigate().GoToUrl("https://www.bniconnectglobal.com/login/?message=");
-                //    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                //    wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
-                //    await Task.Delay(2000);
-
-                //    var username = wait.Until(d => d.FindElement(By.Name("username")));
-                //    username.SendKeys(login.user_id);
-
-                //    var password = wait.Until(d => d.FindElement(By.Name("password")));
-                //    password.SendKeys(login.Password);
-
-                //    var submitButton = wait.Until(d => d.FindElement(By.XPath("//button[@type='submit']")));
-                //    submitButton.Click();
-
-                //    await Task.Delay(3000); // Wait for login to complete
-                //}
+               
 
                 // 3. Local user setup
                 var user = await _userManager.FindByNameAsync(login.user_id);
@@ -122,14 +106,22 @@ namespace BniConnect.Controllers
                     HttpOnly = true,
                     Secure = true,
                     SameSite = SameSiteMode.Strict,
-                    Expires = DateTimeOffset.UtcNow.AddDays(7)
+                    Expires = DateTimeOffset.UtcNow.AddYears(20)
                 };
 
-                Response.Cookies.Append("UserId", user.user_id, cookieOptions);
-                Response.Cookies.Append("UserEmail", user.Email, cookieOptions);
-                Response.Cookies.Append("UserName", user.UserName, cookieOptions);
-                Response.Cookies.Append("Password", user.Password, cookieOptions);
+                var userData = new
+                {
+                    UserId = user.user_id,
+                    Email = user.Email,
+                    UserName = user.UserName,
+                    Client=user.Id
+                    // Do NOT store raw passwords in cookies. If needed, store an access token or session ID.
+                };
 
+                string userJson = JsonSerializer.Serialize(userData);
+                Response.Cookies.Append("Cookie", userJson, cookieOptions);
+                HttpContext.Session.SetString("Cookie", userJson);
+                HttpContext.Session.SetString("ClientId", login.user_id.ToString());
                 return RedirectToAction("Index", "Members");
             }
             catch (Exception ex)

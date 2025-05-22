@@ -25,8 +25,15 @@ namespace BniConnect.Repository
 
             await connection.OpenAsync();
             var sql = @"
-        SELECT *
-        FROM members_profiles
+        SELECT  
+    m.*,
+    CASE 
+        WHEN c.UserId IS NULL THEN 0 
+        ELSE 1 
+    END AS IsSuccess
+FROM members_profiles AS m 
+LEFT JOIN ConnectionSentHistory AS c 
+    ON m.user_id = c.UserId
         WHERE 
             (@MemberKeywords IS NULL OR 
                 (Name LIKE '%' + @MemberKeywords + '%' OR 

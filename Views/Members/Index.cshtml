@@ -326,27 +326,7 @@
                         <tbody id="membersTableBody">
                             <!-- Members will be appended here -->
                         </tbody>
-                        @*  <tbody>
-                            @foreach (var member in Model.Members)
-                            {
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" class="memberCheckbox form-check-input" data-name="@member.Name" value="@member.UserId">
-                                    </td>
-                                    <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=@member.UserId" class="link">@member.Name</a></td>
-                                    <td>@member.Chapter</td>
-                                    <td>@member.Company</td>
-                                    <td>@member.Location</td>
-                                    <td>@member.Category</td>
-                                    <td id="socialLinksContainer-@member.UserId">
-                                        <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="@member.UserId">Get </button>
-                                    </td>
-                                    <td>
-                                        <i class='ri-@(member.ConnectionSent ? "checkbox" : "close")-circle-fill fs-22'></i>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody> *@
+
                     </table>
 
                     <div class="row">
@@ -359,6 +339,15 @@
                             <button id="nextPage" type="submit" class="btn btn-primary ms-2" style="display:none;">Next</button>
                         </div>
 
+                    </div>
+                </div>
+                <!-- ✅ Loader HTML goes here -->
+                <div id="loaderOverlay" style="display: none; position: fixed; z-index: 9999; top: 0; left: 0; height: 100%; width: 100%; background: rgba(255, 255, 255, 0.8); text-align: center;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div>Loading members...</div>
                     </div>
                 </div>
             </div>
@@ -383,234 +372,198 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script>
-            async function updateSubcategories() {
-                const categoryDropdown = document.getElementById("categoryDropdown");
-                const subcategoryDropdown = document.getElementById("subcategoryDropdown");
-                const subcategoryContainer = document.getElementById("subcategoryContainer");
+                async function updateSubcategories() {
+                    const categoryDropdown = document.getElementById("categoryDropdown");
+                    const subcategoryDropdown = document.getElementById("subcategoryDropdown");
+                    const subcategoryContainer = document.getElementById("subcategoryContainer");
 
-                subcategoryDropdown.innerHTML = '<option value="">Select Subcategory</option>';
+                    subcategoryDropdown.innerHTML = '<option value="">Select Subcategory</option>';
 
-                const selectedCategory = categoryDropdown.value;
+                    const selectedCategory = categoryDropdown.value;
 
-                if (!selectedCategory) {
-                    subcategoryContainer.style.display = 'none';
-                    return;
-                }
-                try {
-                    const response = await fetch(`/Members/GetSubcategoryById?catCode=${selectedCategory}`);
-                    const result = await response.json();
-
-                    if (result.status === "Success" && result.data && result.data.length > 0) {
-                        subcategoryContainer.style.display = 'block';
-
-                        result.data.forEach(subcategory => {
-                            console.log(subcategory);
-                            const option = document.createElement("option");
-                            option.value = subcategory.subCode;
-                            option.textContent = subcategory.subCategory;
-                            subcategoryDropdown.appendChild(option);
-                        });
-                    } else {
+                    if (!selectedCategory) {
                         subcategoryContainer.style.display = 'none';
-                        toastr.error(`Error fetching subcategories`);
+                        return;
                     }
-                } catch (error) {
-                    console.error('Error fetching subcategories:', error);
-                    toastr.error(`Error fetching subcategories`);
-                    subcategoryContainer.style.display = 'none';
+                    try {
+                        const response = await fetch(`/Members/GetSubcategoryById?catCode=${selectedCategory}`);
+                        const result = await response.json();
+
+                        if (result.status === "Success" && result.data && result.data.length > 0) {
+                            subcategoryContainer.style.display = 'block';
+
+                            result.data.forEach(subcategory => {
+                                console.log(subcategory);
+                                const option = document.createElement("option");
+                                option.value = subcategory.subCode;
+                                option.textContent = subcategory.subCategory;
+                                subcategoryDropdown.appendChild(option);
+                            });
+                        } else {
+                            subcategoryContainer.style.display = 'none';
+                            toastr.error(`Error fetching subcategories`);
+                        }
+                    } catch (error) {
+                        console.error('Error fetching subcategories:', error);
+                        toastr.error(`Error fetching subcategories`);
+                        subcategoryContainer.style.display = 'none';
+                    }
                 }
-            }
-               
-
-                async function searchmembers()
-
-                {
 
 
-
-                               // var dropdown = document.getElementById("categoryDropdown");
-                //                    var dropdown = document.getElementById("subcategoryDropdown");
-                // var selectedText = dropdown.options[dropdown.selectedIndex].text;
-                // alert("Selected Text: " + selectedText);
-
-                var MemberCity= document.getElementById("MemberCity").value;
-                var MemberCountryId= document.getElementById("MemberCountryId").value;
-                var MemberCompanyName= document.getElementById("memberCompanyName").value;
-                var MemberLastName= document.getElementById("memberLastName").value;
-                var MemberFirstName= document.getElementById("memberFirstName").value;
-                var MemberKeywords= document.getElementById("memberKeywords").value;
-                var  MemberPrimaryCategoryId= document.getElementById("categoryDropdown").value;
+                                async function searchmembers() {
+                var MemberCity = document.getElementById("MemberCity").value;
+                var MemberCountryId = document.getElementById("MemberCountryId").value;
+                var MemberCompanyName = document.getElementById("memberCompanyName").value;
+                var MemberLastName = document.getElementById("memberLastName").value;
+                var MemberFirstName = document.getElementById("memberFirstName").value;
+                var MemberKeywords = document.getElementById("memberKeywords").value;
+                var MemberPrimaryCategoryId = document.getElementById("categoryDropdown").value;
 
                 var dropdown = document.getElementById("categoryDropdown");
-
-                var MemberPrimaryCategory=null;
-                if(dropdown!=null && dropdown>0)
-                {
+                var MemberPrimaryCategory = null;
+                if (dropdown != null && dropdown.selectedIndex > 0) {
                     MemberPrimaryCategory = dropdown.options[dropdown.selectedIndex].text;
                 }
+
                 var dropdownSub = document.getElementById("subcategoryDropdown");
-                
                 var MemberSecondaryCategory = null;
-                if(dropdownSub!=null && dropdownSub > 0)
-                {
+                if (dropdownSub != null && dropdownSub.selectedIndex > 0) {
                     MemberSecondaryCategory = dropdownSub.options[dropdownSub.selectedIndex].text;
                 }
 
-
-                  // var  MemberSecondaryCategory= document.getElementById("subcategoryDropdown").value;
-                debugger
-                $.ajax({
-                        url: '/Members/SearchWithCookie',
-                        type: 'POST',
-                        data: {
-                                            MemberCity: MemberCity,
-                                            MemberCountryId: MemberCountryId,
-                                            MemberCompanyName: MemberCompanyName,
-                                            MemberLastName: MemberLastName,
-                                            MemberFirstName: MemberFirstName,
-                                            MemberKeywords: MemberKeywords,
-                                            MemberPrimaryCategory: MemberPrimaryCategory,
-                                            MemberPrimaryCategoryId: MemberPrimaryCategoryId,
-                                            MemberSecondaryCategory: MemberSecondaryCategory,
-                                           
-                        },
-                             success: function (response) {
-                    if ($.fn.DataTable.isDataTable('#memberTable')) {
-                        $('#memberTable').DataTable().destroy();
-                    }
-                    debugger
-                    let tbody = $('#membersTableBody');
-                    tbody.empty();
-
-                    $.each(response.members, function (i, member) {
-                        let row = `
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="memberCheckbox form-check-input" data-name="${member.name}" value="${member.userId}">
-                                </td>
-                                <td>
-                                    <a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a>
-                                </td>
-                                <td>${member.chapter || ''}</td>
-                                <td>${member.company || ''}</td>
-                                <td>${member.category || ''}</td>
-                                <td>${member.category || ''}</td>
-                                <td>
-                                    <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
-                                </td>
-                                <td>
-                                    <i class="ri-${member.connectionSent ? 'checkbox' : 'close'}-circle-fill fs-22"></i>
-                                </td>
-                            </tr>`;
-                        tbody.append(row);
-                    });
-                    debugger
-                            $('#memberTable').DataTable({
-                paging: true,
-                searching: false,
-                ordering: true,
-                pageLength: 25,       // rows per page
-                lengthChange: true,   // let user change rows per page
-                // autoWidth: false,
-                // optional: add responsive or other configs here
-            });
+                if (
+                    !MemberCity &&
+                    (!MemberCountryId || MemberCountryId === "0") &&
+                    !MemberCompanyName &&
+                    !MemberLastName &&
+                    !MemberFirstName &&
+                    !MemberKeywords &&
+                    (!MemberPrimaryCategoryId || MemberPrimaryCategoryId === "0") &&
+                    (!MemberSecondaryCategory)
+                ) {
+                    alert("Please fill at least one field to search.");
+                    return;
                 }
-            });
-            // Optionally load initial data
-            // $(document).ready(function () {
-            //     searchmembers();
-            // });
-                   //          success: function(response) {
-                   //              debugger
-                   //     // // Response should include members array and totalPages count
-                   //     // totalPages = response.totalPages;
-                   //     currentPage = response.currentPage;
 
-                   //     // Clear table body first
-                   //     $('#membersTableBody').empty();
+                // Show loader
+                $('#loaderOverlay').show();
 
-                   //     // Append new rows
-                   //     response.members.forEach(member => {
-                   //       $('#membersTableBody').append(`
-                   //         <tr>
-                   //           <td><input type="checkbox" class="memberCheckbox" data-name="${member.name}" value="${member.userId}"></td>
-                   //           <td><a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a></td>
-                   //           <td>${member.chapter}</td>
-                   //           <td>${member.company}</td>
-                   //               <td>${member.country}</td>
-                   //           <td>${member.category}</td>
-                   //           <td id="socialLinksContainer-${member.userId}">
-                   //             <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
-                   //           </td>
-                   //           <td><i class='ri-${member.ConnectionSent ? "checkbox" : "close"}-circle-fill fs-22'></i></td>
-                   //         </tr>
-                   //       `);
-                   //     });
-                   //          renderPagination(response.totalPages, response.currentpage,response.members.length;
-                   //     // Update pagination buttons
-                   //     // renderPagination();
-                   //   },
-                   //   error: function() {
-                   //     alert('Failed to fetch members.');
-                   //   }
-                   // });
-                        //     success: function (data) {
-                        //         debugger
-                        //        alert(data.Members);
-                        //            // debugger
-                        //     }
-                        // });
+                $.ajax({
+                    url: '/Members/SearchWithCookie',
+                    type: 'POST',
+                    data: {
+                        MemberCity,
+                        MemberCountryId,
+                        MemberCompanyName,
+                        MemberLastName,
+                        MemberFirstName,
+                        MemberKeywords,
+                        MemberPrimaryCategory,
+                        MemberPrimaryCategoryId,
+                        MemberSecondaryCategory
+                    },
+                    success: function (response) {
+                        if ($.fn.DataTable.isDataTable('#memberTable')) {
+                            $('#memberTable').DataTable().destroy();
+                        }
+                    debugger
+                        let tbody = $('#membersTableBody');
+                        tbody.empty();
 
+                        $.each(response.members, function (i, member) {
+                            let row = `
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="memberCheckbox form-check-input" data-name="${member.name}" value="${member.user_id}">
+                                    </td>
+                                    <td>
+                                        <a target="_blank" href="https://www.bniconnectglobal.com/web/secure/networkHome?userId=${member.userId}" class="link">${member.name}</a>
+                                    </td>
+                                    <td>${member.chapter || ''}</td>
+                                    <td>${member.company || ''}</td>
+                                    <td>${member.country || ''}</td>
+                                    <td>${member.category || ''}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm getSocialLinkButton" data-userid="${member.userId}">Get</button>
+                                    </td>
+                                    <td>
+                                        <i class="ri-${member.isSuccess ? 'checkbox' : 'close'}-circle-fill fs-22"></i>
+                                    </td>
+                                </tr>`;
+                            tbody.append(row);
+                        });
+                    debugger
+                        $('#memberTable').DataTable({
+                            paging: true,
+                            searching: false,
+                            ordering: true,
+                            pageLength: 25,
+                            lengthChange: true
+                        });
+                    },
+                    //     error: function (xhr, status, error) {
 
-            }
-                    
-                                function renderPagination(totalPages, currentPage,membersCount) {
-                                    debugger
-                const paginationContainer = $('#pagination');
-                paginationContainer.empty();
-
-                if (totalPages <= 1) return;
-
-
-                       // Previous button (only if not on first page)
-            if (currentPage > 1) {
-                paginationContainer.append(`
-                    <button class="btn btn-sm btn-outline-secondary me-1"
-                            onclick="searchmembers(${currentPage - 1})">Previous</button>
-                `);
-            }
-
-            // Calculate page range to show: max 3 pages
-            let startPage = Math.max(1, currentPage - 1);
-            let endPage = Math.min(totalPages, startPage + 2);
-
-            // Shift range if near the end and only showing 1-2 pages
-            if (endPage - startPage < 2) {
-                startPage = Math.max(1, endPage - 2);
+                    //         console.error("Error Status:", status);
+                    //         console.error("Error Message:", error);
+                    //         console.error("Response Text:", xhr.responseText);
+                    //     alert('Failed to fetch members.');
+                    // },
+                    complete: function () {
+                        // Hide loader regardless of success or failure
+                        $('#loaderOverlay').hide();
+                    }
+                });
             }
 
-            if(membersCount!=0){
 
-                for (let i = startPage; i <= endPage && i <= totalPages; i++) {
+                                    function renderPagination(totalPages, currentPage,membersCount) {
+
+                    const paginationContainer = $('#pagination');
+                    paginationContainer.empty();
+
+                    if (totalPages <= 1) return;
+
+
+                           // Previous button (only if not on first page)
+                if (currentPage > 1) {
                     paginationContainer.append(`
-                        <button class="btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-outline-primary'} me-1"
-                                onclick="searchmembers(${i})">${i}</button>
+                        <button class="btn btn-sm btn-outline-secondary me-1"
+                                onclick="searchmembers(${currentPage - 1})">Previous</button>
                     `);
                 }
-            }
-            else{
-                             paginationContainer.append(`<h5 class="text-danger">No Data Found</h5>`);
-            }
-            
 
-            // Next button (only if not on last page)
-            if (currentPage < totalPages && members!=0) {
-                paginationContainer.append(`
-                    <button class="btn btn-sm btn-outline-secondary"
-                            onclick="searchmembers(${currentPage + 1})">Next</button>
-                `);
-            }
-            }
+                // Calculate page range to show: max 3 pages
+                let startPage = Math.max(1, currentPage - 1);
+                let endPage = Math.min(totalPages, startPage + 2);
+
+                // Shift range if near the end and only showing 1-2 pages
+                if (endPage - startPage < 2) {
+                    startPage = Math.max(1, endPage - 2);
+                }
+
+                if(membersCount!=0){
+
+                    for (let i = startPage; i <= endPage && i <= totalPages; i++) {
+                        paginationContainer.append(`
+                            <button class="btn btn-sm ${i === currentPage ? 'btn-primary' : 'btn-outline-primary'} me-1"
+                                    onclick="searchmembers(${i})">${i}</button>
+                        `);
+                    }
+                }
+                else{
+                                 paginationContainer.append(`<h5 class="text-danger">No Data Found</h5>`);
+                }
+
+
+                // Next button (only if not on last page)
+                if (currentPage < totalPages && members!=0) {
+                    paginationContainer.append(`
+                        <button class="btn btn-sm btn-outline-secondary"
+                                onclick="searchmembers(${currentPage + 1})">Next</button>
+                    `);
+                }
+                }
 
         </script>
         @*   <script>

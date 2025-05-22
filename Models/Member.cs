@@ -3,6 +3,7 @@
     public class Member
     {
         public string UserId { get; set; } 
+        public string user_id { get; set; }
         public string Name { get; set; }
         public string Chapter { get; set; }
         public string Company { get; set; }
@@ -11,6 +12,7 @@
         public string Location { get; set; }
         public string Category { get; set; }
         public bool ConnectionSent { get; set; }
+        public bool IsSuccess{ get; set; }
 
         public int Id { get; set; }
         public string MemberCategory { get; set; }

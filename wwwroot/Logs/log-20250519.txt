@@ -96,3 +96,271 @@ Invalid column name 'Category'.
    at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
 ClientConnectionId:7ae72a86-b343-4db9-b6eb-1f2b8c0e2282
 Error Number:207,State:1,Class:16
+2025-05-19 15:59:40.525 +05:30 [INF] Test log message for "2025-05-19T10:29:40.5244547Z"
+2025-05-19 15:59:40.525 +05:30 [INF] Test log message for "2025-05-19T10:29:40.5244547Z"
+2025-05-19 16:11:53.812 +05:30 [INF] Test log message for "2025-05-19T10:41:53.8120731Z"
+2025-05-19 16:11:53.812 +05:30 [INF] Test log message for "2025-05-19T10:41:53.8120731Z"
+2025-05-19 16:18:20.209 +05:30 [INF] Test log message for "2025-05-19T10:48:20.2089867Z"
+2025-05-19 16:18:20.209 +05:30 [INF] Test log message for "2025-05-19T10:48:20.2089867Z"
+2025-05-19 16:23:02.894 +05:30 [INF] Test log message for "2025-05-19T10:53:02.8938638Z"
+2025-05-19 16:23:02.894 +05:30 [INF] Test log message for "2025-05-19T10:53:02.8938638Z"
+2025-05-19 16:38:48.724 +05:30 [INF] Test log message for "2025-05-19T11:08:48.7235092Z"
+2025-05-19 16:38:48.724 +05:30 [INF] Test log message for "2025-05-19T11:08:48.7235092Z"
+2025-05-19 16:49:51.725 +05:30 [INF] Test log message for "2025-05-19T11:19:51.7244156Z"
+2025-05-19 16:49:51.725 +05:30 [INF] Test log message for "2025-05-19T11:19:51.7244156Z"
+2025-05-19 16:52:21.411 +05:30 [INF] Test log message for "2025-05-19T11:22:21.4102523Z"
+2025-05-19 16:52:21.411 +05:30 [INF] Test log message for "2025-05-19T11:22:21.4102523Z"
+2025-05-19 16:55:22.039 +05:30 [INF] Test log message for "2025-05-19T11:25:22.0382540Z"
+2025-05-19 16:55:22.039 +05:30 [INF] Test log message for "2025-05-19T11:25:22.0382540Z"
+2025-05-19 16:57:03.037 +05:30 [INF] Test log message for "2025-05-19T11:27:03.0362801Z"
+2025-05-19 16:57:03.037 +05:30 [INF] Test log message for "2025-05-19T11:27:03.0362801Z"
+2025-05-19 16:59:56.176 +05:30 [INF] Test log message for "2025-05-19T11:29:56.1756814Z"
+2025-05-19 16:59:56.176 +05:30 [INF] Test log message for "2025-05-19T11:29:56.1756814Z"
+2025-05-19 17:10:40.138 +05:30 [INF] Test log message for "2025-05-19T11:40:40.1375829Z"
+2025-05-19 17:10:40.138 +05:30 [INF] Test log message for "2025-05-19T11:40:40.1375829Z"
+2025-05-19 17:49:38.594 +05:30 [INF] Test log message for "2025-05-19T12:19:38.5938730Z"
+2025-05-19 17:49:38.594 +05:30 [INF] Test log message for "2025-05-19T12:19:38.5938730Z"
+2025-05-19 17:56:34.564 +05:30 [INF] Test log message for "2025-05-19T12:26:34.5638868Z"
+2025-05-19 17:56:34.564 +05:30 [INF] Test log message for "2025-05-19T12:26:34.5638868Z"
+2025-05-19 18:03:58.104 +05:30 [INF] Test log message for "2025-05-19T12:33:58.1036388Z"
+2025-05-19 18:03:58.104 +05:30 [INF] Test log message for "2025-05-19T12:33:58.1036388Z"
+2025-05-19 18:04:29.872 +05:30 [INF] Test log message for "2025-05-19T12:34:29.8713023Z"
+2025-05-19 18:04:29.872 +05:30 [INF] Test log message for "2025-05-19T12:34:29.8713023Z"
+2025-05-19 18:10:51.797 +05:30 [INF] Test log message for "2025-05-19T12:40:51.7963779Z"
+2025-05-19 18:10:51.797 +05:30 [INF] Test log message for "2025-05-19T12:40:51.7963779Z"
+2025-05-19 18:19:29.415 +05:30 [INF] Test log message for "2025-05-19T12:49:29.4143552Z"
+2025-05-19 18:19:29.415 +05:30 [INF] Test log message for "2025-05-19T12:49:29.4143552Z"
+2025-05-19 18:57:14.523 +05:30 [INF] Test log message for "2025-05-19T13:27:14.5227600Z"
+2025-05-19 18:57:14.523 +05:30 [INF] Test log message for "2025-05-19T13:27:14.5227600Z"
+2025-05-19 18:57:28.312 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:28.312 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:34.034 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:34.034 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:41.385 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:41.385 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:52.185 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:57:52.185 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:b73b36a2-5068-4129-8d67-0b9ddff5e9a7
+Error Number:8114,State:5,Class:16
+2025-05-19 18:58:00.287 +05:30 [INF] Test log message for "2025-05-19T13:28:00.2861646Z"
+2025-05-19 18:58:00.287 +05:30 [INF] Test log message for "2025-05-19T13:28:00.2861646Z"
+2025-05-19 18:58:06.331 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 18:58:06.331 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 18:58:28.145 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 18:58:28.145 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 18:59:26.189 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 18:59:26.189 +05:30 [ERR] Error while getting Search data from DB
+Microsoft.Data.SqlClient.SqlException (0x80131904): Error converting data type nvarchar to bigint.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Dapper.SqlMapper.QueryAsync[T](IDbConnection cnn, Type effectiveType, CommandDefinition command) in /_/Dapper/SqlMapper.Async.cs:line 452
+   at BniConnect.Repository.MemberRepository.SearchMembersAsync(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Repository\MemberRepository.cs:line 52
+   at BniConnect.Controllers.MembersController.SearchWithCookie(MemberSearchModel model) in D:\dip_work\BNI_CONNECT_PROJECT\Controllers\MembersController.cs:line 99
+ClientConnectionId:66a3d1b6-5b64-443b-a605-9ed801201f93
+Error Number:8114,State:5,Class:16
+2025-05-19 19:01:16.526 +05:30 [INF] Test log message for "2025-05-19T13:31:16.5260117Z"
+2025-05-19 19:01:16.526 +05:30 [INF] Test log message for "2025-05-19T13:31:16.5260117Z"
+2025-05-19 19:03:28.048 +05:30 [INF] Test log message for "2025-05-19T13:33:28.0473984Z"
+2025-05-19 19:03:28.048 +05:30 [INF] Test log message for "2025-05-19T13:33:28.0473984Z"
+2025-05-19 19:04:32.004 +05:30 [INF] Test log message for "2025-05-19T13:34:32.0033798Z"
+2025-05-19 19:04:32.004 +05:30 [INF] Test log message for "2025-05-19T13:34:32.0033798Z"
