@@ -1,6 +1,8 @@
 ﻿using BniConnect.Data;
 using BniConnect.Interface;
 using BniConnect.Models;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -9,16 +11,23 @@ namespace BniConnect.Services
     public class AccountService : IAccountService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IConfiguration _configuration;
 
-        public AccountService(ApplicationDbContext context)
+        public AccountService(ApplicationDbContext context,IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         public async Task<UserProfile> GetEmailByUserId(string userId)
         {
-            var userProfile = await _context.UserProfiles
-            .FirstOrDefaultAsync(up => up.UserId == userId);
+            using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            string sql = "SELECT * FROM UserProfiles WHERE UserId = @UserId";
+            var userProfile = await connection.QueryFirstOrDefaultAsync<UserProfile>(sql, new { UserId = userId });
+
+
+            //var userProfile = await _context.UserProfiles
+            //.FirstOrDefaultAsync(up => up.UserId == userId);
             return userProfile;
         }
 
@@ -41,14 +50,23 @@ namespace BniConnect.Services
 
         public async Task<UserProfile> GetUserById(string userId)
         {
-            return await _context.UserProfiles.FindAsync(userId);
+
+            using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            string sql = "SELECT * FROM UserProfiles WHERE UserId = @UserId";
+            return await connection.QueryFirstOrDefaultAsync<UserProfile>(sql, new { UserId = userId });
+            //return await _context.UserProfiles.FindAsync(userId);
         }
 
         public async Task<UserProfile> GetUserByPhone(string phoneNumber)
         {
             return await _context.UserProfiles.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber);
         }
-
+        public async Task<Member> GetMemberProfileById(string userId)
+        {
+            using var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            string sql = "SELECT * FROM members_profiles WHERE user_id = @UserId";
+            return await connection.QueryFirstOrDefaultAsync<Member>(sql, new { UserId = userId });
+        }
         public async Task<bool> InsertUserProfile(UserProfile userProfile)
         {
             try

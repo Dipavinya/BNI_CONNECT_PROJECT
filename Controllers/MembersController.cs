@@ -316,72 +316,40 @@ namespace BniConnect.Controllers
                     continue;
                 }
 
-                var apiUrl = $"https://www.bniconnectglobal.com/web/secure/networkProfile?userId={id}&canAddNetwok=true";
-                var cookie = HttpContext.Session.GetString("Cookie") ?? HttpContext.Session.GetString("NewCookie");
-
-                try
+                // Try to fetch from member_profiles
+                var member = await _accountService.GetMemberProfileById(id);
+                if (member != null)
                 {
-                    await Task.Delay(2500); // Simulating delay
-                    var request = new HttpRequestMessage(HttpMethod.Get, apiUrl);
-                    request.Headers.Add("Host", "www.bniconnectglobal.com");
-                    request.Headers.Add("Cookie", cookie);
-
-                    var response = await _httpClient.SendAsync(request);
-                    var statusCode = (int)response.StatusCode;
-                    var responseBody = await response.Content.ReadAsStringAsync();
-
-                    if (response.StatusCode == HttpStatusCode.TooManyRequests) // 429 Too Many Requests
+                    // Map member to user profile
+                    var userProfile = new UserProfile
                     {
-                        results.Add(new
-                        {
-                            UserId = id,
-                            Status = "RateLimited",
-                            Message = "API rate limit exceeded. Try again later.",
-                            StatusCode = 429,
-                            ApiResponse = responseBody // Capture response from API
-                        });
+                        UserId = member.user_id,
+                        DisplayName = member.Name,
+                        Industry = member.Category, // or member.member_subcategory if preferred
+                        PhoneNumber = member.Phone,
+                        MobileNumber = member.MobileNumber,
+                        Email = member.Email,
+                        ClientId = clientId
+                    };
+
+                    bool inserted = await _accountService.InsertUserProfile(userProfile);
+                     user = await _accountService.GetUserById(id);
+                    if (user != null)
+                    {
+                        results.Add(new { UserId = id, Status = "Exists", Message = $"{user.DisplayName} already exists.", StatusCode = 200 });
                         continue;
                     }
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var userProfile = await _parserService.ParseUserProfiles(responseBody, id);
-                        userProfile.ClientId = clientId;
-
-                        if (userProfile != null)
-                        {
-                            bool result = await _accountService.InsertUserProfile(userProfile);
                             results.Add(new
                             {
                                 UserId = id,
-                                Status = result ? "Inserted" : "Failed",
-                                Message = result ? "User profile inserted successfully." : "Failed to insert user profile.",
-                                StatusCode = result ? 201 : 500
+                        Status = inserted ? "InsertedFromMemberProfile" : "InsertFailed",
+                        Message = inserted ? "User inserted from member_profiles." : "Failed to insert user.",
+                        StatusCode = inserted ? 201 : 500
                             });
                         }
                         else
                         {
-                            results.Add(new { UserId = id, Status = "NotFound", Message = "User profile not found.", StatusCode = 404 });
-                        }
-                    }
-                    else
-                    {
-                        results.Add(new
-                        {
-                            UserId = id,
-                            Status = "ApiError",
-                            Message = $"API call failed with status: {statusCode} - {response.ReasonPhrase}",
-                            StatusCode = statusCode
-                        });
-                    }
-                }
-                catch (HttpRequestException httpEx)
-                {
-                    results.Add(new { UserId = id, Status = "Error", Message = $"HTTP request error: {httpEx.Message}", StatusCode = 500 });
-                }
-                catch (Exception ex)
-                {
-                    results.Add(new { UserId = id, Status = "Error", Message = $"An error occurred: {ex.Message}", StatusCode = 500 });
+                    results.Add(new { UserId = id, Status = "NotFound", Message = "User not found in user_profiles or member_profiles.", StatusCode = 404 });
                 }
             }
 

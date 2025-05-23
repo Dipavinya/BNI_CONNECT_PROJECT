@@ -13,5 +13,8 @@ namespace BniConnect.Interface
         Task<List<ConnectionSentHistoryDto>> GetConnectionHistoryByClientId(string clinetId);
         Task<bool> DeleteConnection(string[] ids);
         Task<bool> LoginUser(string UserName, string Password);
+
+        Task<Member> GetMemberProfileById(string userId);
+
     }
 }
