@@ -96,7 +96,12 @@ namespace BniConnect.Controllers
                         return View("Index", login);
                     }
                 }
-
+                var isPasswordValid = await _userManager.CheckPasswordAsync(user, login.Password);
+                if (!isPasswordValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
+                    return View("Login", login);
+                }
                 // 4. Sign in locally
                 await _signInManager.SignInAsync(user, isPersistent: false);
 
